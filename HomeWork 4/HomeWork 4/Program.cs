@@ -1,75 +1,83 @@
-﻿namespace HomeWork_4
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace HomeWork_4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter length of array what you want to create at 0 for 255: ");
-
-            Console.WriteLine();
-
-            if (!byte.TryParse(Console.ReadLine(), out byte lengthArray) || lengthArray < 0 || lengthArray > byte.MaxValue)
+            int lengthArray;
+            do
             {
-                Console.WriteLine($"Error!!! enter only numbers at 0 for {byte.MaxValue}!");
+                Console.Write($"Enter length of array what you want to create at 0 for {int.MaxValue / 2}: ");
 
-                return;
+                Console.WriteLine();
             }
+            while (!int.TryParse(Console.ReadLine(), out lengthArray) || lengthArray < 0 || lengthArray > int.MaxValue / 2);
 
             /* First array with rendom elemet from 1 to 26 value */
 
-            int[] arrayOfNumbers = new int[lengthArray];
-
-            CreateRandomElement(arrayOfNumbers);
-
-            Console.WriteLine();
-
             Console.WriteLine("Display first array: ");
 
-            DisplayShowIntArray(arrayOfNumbers);
-
-            Console.WriteLine();
+            CreateAndDysplayRandomArray(lengthArray);
 
             /* Start create add work with Even number array and transfrom to char */
 
-            int[] arrayEvenNumbers = new int[lengthArray];
-
-            CreateEvenElementToArray(arrayEvenNumbers);
-
-            char[] changeEvenArray = ChangeNumberToChar(arrayEvenNumbers);
-
-            ChangeOnUpperCaseSpecificChar(changeEvenArray);
-
-            int countCharUpperOfEven = CountOfUpperChar(changeEvenArray);
-
             Console.WriteLine("Displey Even char array with Upper: ");
 
-            DisplayShowCharArray(changeEvenArray);
+            int jumperToEven = 0;
+
+            char[] charEvenArray = CreateAndChangeArrayFromIntToChar(lengthArray, jumperToEven);
+
+            int countEvenCharUpper = CountOfUpperChar(charEvenArray);
 
             Console.WriteLine();
 
             /* Start create add work with Odd number array and transfrom to char */
 
-            int[] arrayOddNumbers = new int[lengthArray];
-
-            CreateOddElementToArray(arrayOddNumbers);
-
-            char[] changeOddArray = ChangeNumberToChar(arrayOddNumbers);
-
-            ChangeOnUpperCaseSpecificChar(changeOddArray);
-
-            int countCharUpperOfOdd = CountOfUpperChar(changeOddArray);
-
             Console.WriteLine("Displey Odd char array with Upper: ");
 
-            DisplayShowCharArray(changeOddArray);
+            int jumperToOdd = 1;
+
+            char[] charOddArray = CreateAndChangeArrayFromIntToChar(lengthArray, jumperToOdd);
+
+            int countOddCharUpper = CountOfUpperChar(charOddArray);
 
             Console.WriteLine();
 
             /* Compare two char array */
 
-            Console.WriteLine($"array with even numbers have {countCharUpperOfEven} upper letter, array odd numbers have {countCharUpperOfOdd} upper letter");
+            Console.WriteLine($"array with even numbers have {countEvenCharUpper} upper letter, array odd numbers have {countOddCharUpper} upper letter");
 
-            CompareTwoValues(countCharUpperOfEven, countCharUpperOfOdd);
+            CompareTwoValues(countEvenCharUpper, countOddCharUpper);
+        }
+
+        static int[] CreateAndDysplayRandomArray(int lengthArray)
+        {
+            int[] arrayOfNumbers = new int[lengthArray];
+
+            AddElementWithRandomValue(arrayOfNumbers);
+
+            DisplayShowIntArray(arrayOfNumbers);
+
+            Console.WriteLine();
+
+            return arrayOfNumbers;
+        }
+
+        static char[] CreateAndChangeArrayFromIntToChar(int lengthArray, int jumperOddEven)
+        {
+            int[] arrayEvenNumbers = new int[lengthArray];
+
+            GenerationEvenOrOddElementToArray(arrayEvenNumbers, jumperOddEven);
+
+            char[] changeEvenArray = ChangeNumberToChar(arrayEvenNumbers);
+
+            ChangeOnUpperCaseSpecificChar(changeEvenArray);
+
+            DisplayShowCharArray(changeEvenArray);
+
+            return changeEvenArray;
         }
 
         static void DisplayShowIntArray(int[] array)
@@ -92,7 +100,7 @@
             Console.WriteLine();
         }
 
-        static int[] CreateRandomElement(int[] array)
+        static int[] AddElementWithRandomValue(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -102,14 +110,15 @@
             return array;
         }
 
-        static int[] CreateEvenElementToArray(int[] array)
+        static void GenerationEvenOrOddElementToArray(int[] array, int jumperOddEven)
         {
             int randomNumber;
 
             for (int i = 0; i < array.Length; i++)
             {
                 randomNumber = new Random().Next(1, 26);
-                if (randomNumber % 2 == 0)
+
+                if (randomNumber % 2 == jumperOddEven)
                 {
                     array[i] = randomNumber;
                 }
@@ -118,28 +127,6 @@
                      array[i] = randomNumber + 1;
                 }
             }
-
-            return array;
-        }
-
-        static int[] CreateOddElementToArray(int[] array)
-        {
-            int randomNumber;
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                randomNumber = new Random().Next(1, 26);
-                if (randomNumber % 2 == 1)
-                {
-                    array[i] = randomNumber;
-                }
-                else
-                {
-                    array[i] = randomNumber + 1;
-                }
-            }
-
-            return array;
         }
 
         static char[] ChangeNumberToChar(int[] array)
@@ -205,17 +192,25 @@
 
         static void CompareTwoValues(int firstValue, int secondValue)
         {
-            if (firstValue > secondValue)
+            switch ((firstValue, secondValue))
             {
-                Console.WriteLine("array with upper letter even numbers > array with upper letter odd numbers");
-            }
-            else if (firstValue == secondValue)
-            {
-                Console.WriteLine("array with upper letter even numbers = array with upper letter odd numbers");
-            }
-            else if (firstValue < secondValue)
-            {
-                Console.WriteLine("array with upper letter odd numbers > array with upper letter even numbers");
+                case (>= 0, >= 0) when firstValue > secondValue:
+
+                    Console.WriteLine("array with upper letter even numbers > array with upper letter odd numbers");
+
+                    break;
+
+                case (>= 0, >= 0) when firstValue == secondValue:
+
+                    Console.WriteLine("array with upper letter even numbers = array with upper letter odd numbers");
+
+                    break;
+
+                case (>= 0, >= 0) when firstValue < secondValue:
+
+                    Console.WriteLine("array with upper letter odd numbers > array with upper letter even numbers");
+
+                    break;
             }
         }
     }

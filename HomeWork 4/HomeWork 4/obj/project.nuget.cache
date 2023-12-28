@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VwAk4C7DQu9oYeoS9cH/rjpmr5iHjBmmZyBLKmcklBvxbpj2rr/xILXUlAsb+jrekcQQN0CeXhvSJM9jsKkIvw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Сім'я\\source\\repos\\HomeWork 4\\HomeWork 4\\HomeWork 4.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Сім'я\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+  ],
+  "logs": []
+}
