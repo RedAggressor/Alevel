@@ -67,7 +67,7 @@ namespace HomeWork_4
 
         static char[] CreateAndChangeArrayFromIntToChar(int lengthArray, int jumperOddEven)
         {
-            int[] arrayEvenNumbers = new int[lengthArray];
+            int[] arrayOfNumbers = new int[lengthArray];
 
             GenerationEvenOrOddElementToArray(arrayEvenNumbers, jumperOddEven);
 
