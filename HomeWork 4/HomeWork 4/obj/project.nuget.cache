@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VwAk4C7DQu9oYeoS9cH/rjpmr5iHjBmmZyBLKmcklBvxbpj2rr/xILXUlAsb+jrekcQQN0CeXhvSJM9jsKkIvw==",
+  "dgSpecHash": "gz7Qo8bp46ti7iWFUXgwJLSiCPTl0YrSD3Dl5iSNl68M+l24Cfqr5OEDCmCoqwR5WL5+uICJBZlVV/5awQ+5kw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Сім'я\\source\\repos\\HomeWork 4\\HomeWork 4\\HomeWork 4.csproj",
+  "projectFilePath": "C:\\projects\\Alevel\\HomeWork 4\\HomeWork 4\\HomeWork 4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Сім'я\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
   ],
