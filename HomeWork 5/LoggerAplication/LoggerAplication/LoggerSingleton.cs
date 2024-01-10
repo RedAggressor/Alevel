@@ -15,9 +15,9 @@ namespace LoggerAplication
 
     internal class LoggerSingleton
     {
-        private DateTime _logTime { get; set; }
+        private DateTime LogTime { get; set; }
 
-        private string _messageText { get; set; } = string.Empty;
+        private string MessageText { get; set; } = string.Empty;
 
         private LogType _logType;
 
@@ -39,21 +39,21 @@ namespace LoggerAplication
 
         public void Info(string message, LogType logType)
         {
-            _logTime = DateTime.Now;
+            LogTime = DateTime.Now;
 
             _logType = logType;
 
-            _messageText = message;
+            MessageText = message;
 
             DisplayLogToConsole();
 
             WritteToLoglist();
         }
 
-        private void DisplayLogToConsole() => Console.WriteLine($"{_logTime} : {_logType} : {_messageText}");
+        private void DisplayLogToConsole() => Console.WriteLine($"{LogTime} : {_logType} : {MessageText}");
 
         public string ShowLoglist() => _logMessage.ToString();
 
-        private void WritteToLoglist() => _logMessage.Append($"{_logTime} : {_logType} : {_messageText}\n");
+        private void WritteToLoglist() => _logMessage.Append($"{LogTime} : {_logType} : {MessageText}\n");
     }
 }

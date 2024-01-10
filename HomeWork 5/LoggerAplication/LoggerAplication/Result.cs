@@ -8,24 +8,24 @@ namespace LoggerAplication
 {
     internal class Result
     {
-        private bool _status { get; set; }
+        private bool Status { get; set; }
 
-        private string _message { get; set; } = string.Empty;
+        private string Message { get; set; } = string.Empty;
 
         public Result(bool status)
         {
-            _status = status;
+            Status = status;
         }
 
         public Result(bool status, string message)
         {
-            _message = message;
+            Message = message;
 
-            _status = status;
+            Status = status;
 
-            if (_status == false)
+            if (Status == false)
             {
-                LoggerSingleton.GetInstance().Info(_message, LogType.Error);
+                LoggerSingleton.GetInstance().Info(Message, LogType.Error);
             }
         }
     }
