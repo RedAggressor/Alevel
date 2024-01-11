@@ -2,12 +2,12 @@
 {
     internal class SaveLog
     {
-        private static bool checkOutRequest = true;
+        private static bool _checkOutRequest = true;
         public static void AskSaveLogToFile()
         {
-            checkOutRequest = true;
+            _checkOutRequest = true;
 
-            while (checkOutRequest)
+            while (_checkOutRequest)
             {
                 Console.WriteLine("Does save the log to txt file? Y/N");
 
@@ -21,7 +21,7 @@
 
                             Logger.GetInstance().SaveLog();
 
-                            checkOutRequest = false;
+                            _checkOutRequest = false;
 
                             break;
                         }
@@ -31,7 +31,7 @@
 
                             Console.WriteLine("Log doesn`t save to file");
 
-                            checkOutRequest = false;
+                            _checkOutRequest = false;
 
                             break;
                         }
@@ -41,7 +41,7 @@
 
                             Console.WriteLine("You enter somthing else... repit");
 
-                            checkOutRequest = true;
+                            _checkOutRequest = true;
 
                             break;
                         }

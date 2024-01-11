@@ -2,9 +2,6 @@
 
 namespace LoggerAplication
 {
-    /// <summary>
-    /// Have one method. Method generate 3 random situation for loglist: info, warning, error
-    /// </summary>
     internal class Starter
     {
         public static void Run()

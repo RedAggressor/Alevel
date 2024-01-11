@@ -4,9 +4,9 @@ namespace LoggerAplication
 {
     internal class Logger
     {
-        private DateTime LogTime { get; set; }
+        private DateTime _logTime;
 
-        private string MessageText { get; set; } = string.Empty;
+        private string _messageText = string.Empty;
 
         private LogType _logType;
 
@@ -28,23 +28,23 @@ namespace LoggerAplication
 
         public void Log(string message, LogType logType)
         {
-            LogTime = DateTime.Now;
+            _logTime = DateTime.Now;
 
             _logType = logType;
 
-            MessageText = message;
+            _messageText = message;
 
             DisplayLogToConsole();
 
             WritteToLoglist();
         }
 
-        private void DisplayLogToConsole() => Console.WriteLine($"{LogTime} : {_logType} : {MessageText}");
+        private void DisplayLogToConsole() => Console.WriteLine($"{_logTime} : {_logType} : {_messageText}");
 
         public string ShowLoglist() => _logs.ToString();
 
         internal void SaveLog() => File.WriteAllText("log.txt", ShowLoglist());
 
-        private void WritteToLoglist() => _logs.Append($"{LogTime} : {_logType} : {MessageText}\n");
+        private void WritteToLoglist() => _logs.Append($"{_logTime} : {_logType} : {_messageText}\n");
     }
 }

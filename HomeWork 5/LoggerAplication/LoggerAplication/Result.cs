@@ -2,24 +2,22 @@
 {
     internal class Result
     {
-        private bool Status { get; set; }
+        private bool _status;
 
-        private string Message { get; set; } = string.Empty;
+        private string _message = string.Empty;
 
-        public Result(bool status)
+        public Result(bool status) 
         {
-            Status = status;
+            _status = status;
         }
 
-        public Result(bool status, string message)
+        public Result(bool status, string message): this (status)
         {
-            Message = message;
+            _message = message;
 
-            Status = status;
-
-            if (Status == false)
+            if (_status == false)
             {
-                Logger.GetInstance().Log(Message, LogType.Error);
+                Logger.GetInstance().Log(_message, LogType.Error);
             }
         }
     }
