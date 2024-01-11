@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LoggerAplication
+﻿namespace LoggerAplication
 {
     internal class SaveLog
     {
@@ -21,53 +15,38 @@ namespace LoggerAplication
                 {
                     case ConsoleKey.Y:
                         {
-                            AnswerYes();
+                            Console.WriteLine();
+
+                            Console.WriteLine("Log saves to log.txt");
+
+                            Logger.GetInstance().SaveLog();
+
+                            checkOutRequest = false;
 
                             break;
                         }
                     case ConsoleKey.N:
                         {
-                            AnswerNO();
+                            Console.WriteLine();
+
+                            Console.WriteLine("Log doesn`t save to file");
+
+                            checkOutRequest = false;
 
                             break;
                         }
                     default:
                         {
-                            AnswerSomeElse();
+                            Console.WriteLine();
+
+                            Console.WriteLine("You enter somthing else... repit");
+
+                            checkOutRequest = true;
 
                             break;
                         }
                 }
             }
-        }
-
-        private static void AnswerYes()
-        {
-            Console.WriteLine();
-
-            Console.WriteLine("Log saves to log.txt");
-
-            File.WriteAllText("log.txt", LoggerSingleton.GetInstance().ShowLoglist());
-
-            checkOutRequest = false;
-        }
-
-        private static void AnswerNO()
-        {
-            Console.WriteLine();
-
-            Console.WriteLine("Log doesn`t save to file");
-
-            checkOutRequest = false;
-        }
-
-        private static void AnswerSomeElse()
-        {
-            Console.WriteLine();
-
-            Console.WriteLine("You enter somthing else... repit");
-
-            checkOutRequest = true;
         }
     }
 }

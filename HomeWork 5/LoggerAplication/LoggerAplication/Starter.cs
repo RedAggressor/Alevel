@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace LoggerAplication
 {
@@ -39,10 +35,8 @@ namespace LoggerAplication
                             break;
                         }
                 }
-
                 Thread.Sleep(200);
             }
-
             SaveLog.AskSaveLogToFile();
         }
     }

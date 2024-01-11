@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LoggerAplication
+﻿namespace LoggerAplication
 {
     internal class Result
     {
@@ -25,7 +19,7 @@ namespace LoggerAplication
 
             if (Status == false)
             {
-                LoggerSingleton.GetInstance().Info(Message, LogType.Error);
+                Logger.GetInstance().Log(Message, LogType.Error);
             }
         }
     }
