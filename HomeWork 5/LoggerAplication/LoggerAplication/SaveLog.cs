@@ -3,7 +3,7 @@
     internal class SaveLog
     {
         private static bool _checkOutRequest = true;
-        public static void AskSaveLogToFile()
+        public static void SaveLogToFile()
         {
             _checkOutRequest = true;
 

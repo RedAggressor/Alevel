@@ -34,7 +34,7 @@ namespace LoggerAplication
                 }
                 Thread.Sleep(200);
             }
-            SaveLog.AskSaveLogToFile();
+            SaveLog.SaveLogToFile();
         }
     }
 }
