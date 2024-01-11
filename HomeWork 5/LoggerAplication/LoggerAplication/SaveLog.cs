@@ -3,6 +3,7 @@
     internal class SaveLog
     {
         private static bool _checkOutRequest = true;
+
         public static void SaveLogToFile()
         {
             _checkOutRequest = true;
@@ -15,9 +16,7 @@
                 {
                     case ConsoleKey.Y:
                         {
-                            Console.WriteLine();
-
-                            Console.WriteLine("Log saves to log.txt");
+                            Console.WriteLine("\nLog saves to log.txt");
 
                             Logger.GetInstance().SaveLog();
 
@@ -27,9 +26,7 @@
                         }
                     case ConsoleKey.N:
                         {
-                            Console.WriteLine();
-
-                            Console.WriteLine("Log doesn`t save to file");
+                            Console.WriteLine("\nLog doesn`t save to file");
 
                             _checkOutRequest = false;
 
@@ -37,9 +34,7 @@
                         }
                     default:
                         {
-                            Console.WriteLine();
-
-                            Console.WriteLine("You enter somthing else... repit");
+                            Console.WriteLine("\nYou enter somthing else... repit");
 
                             _checkOutRequest = true;
 
