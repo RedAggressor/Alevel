@@ -12,11 +12,6 @@ namespace HomeWork6._1
             Store store = new Store(new ItemService(new ItemRepository(), logger, new NotificationService(logger)));
 
             store.Start();
-
-            
-                  
-
-            
         }
     }
 }
