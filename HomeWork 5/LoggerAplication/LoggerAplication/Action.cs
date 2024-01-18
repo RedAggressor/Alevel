@@ -16,7 +16,7 @@
             return new Result(true);
         }
 
-        public static Result IBrokeALogic()
+        public static Result BrokeALogic()
         {
             Logger.GetInstance().Log("I Broke A Logic", LogType.Error);
 

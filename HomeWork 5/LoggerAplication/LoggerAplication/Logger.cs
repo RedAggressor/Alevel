@@ -4,7 +4,7 @@ namespace LoggerAplication
 {
     internal class Logger
     {
-        private DateTime _logTime;
+        private DateTime _logTime = DateTime.UtcNow;
 
         private string _messageText = string.Empty;
 
@@ -34,17 +34,17 @@ namespace LoggerAplication
 
             _messageText = message;
 
-            DisplayLogToConsole();
+            Console.WriteLine(DisplayLogToConsole());
 
             WritteToLoglist();
         }
 
-        private void DisplayLogToConsole() => Console.WriteLine($"{_logTime} : {_logType} : {_messageText}");
+        private string DisplayLogToConsole() => $"{_logTime} : {_logType} : {_messageText}";
 
         public string ShowLoglist() => _logs.ToString();
 
         internal void SaveLog() => File.WriteAllText("log.txt", ShowLoglist());
 
-        private void WritteToLoglist() => _logs.Append($"{_logTime} : {_logType} : {_messageText}\n");
+        private void WritteToLoglist() => _logs.Append(DisplayLogToConsole()+"\n");
     }
 }

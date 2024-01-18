@@ -2,46 +2,25 @@
 {
     internal class SaveLog
     {
-        private static bool _checkOutRequest = true;
-
-        public static void SaveLogToFile()
-        {
-            _checkOutRequest = true;
-
-            while (_checkOutRequest)
+        public static bool ChoseAnswer(ConsoleKey consoleKey) =>
+            consoleKey switch
             {
-                Console.WriteLine("Does save the log to txt file? Y/N");
+                ConsoleKey.Y => false,
+                _ => true
+            };
+        
+        public static void SaveLogToFile(bool yesOrNo)
+        {
+            if (!yesOrNo)
+            {
+                Logger.GetInstance().SaveLog();
 
-                switch (Console.ReadKey().Key)
-                {
-                    case ConsoleKey.Y:
-                        {
-                            Console.WriteLine("\nLog saves to log.txt");
+                Console.WriteLine("\nLog saves to log.txt");
 
-                            Logger.GetInstance().SaveLog();
-
-                            _checkOutRequest = false;
-
-                            break;
-                        }
-                    case ConsoleKey.N:
-                        {
-                            Console.WriteLine("\nLog doesn`t save to file");
-
-                            _checkOutRequest = false;
-
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("\nYou enter somthing else... repit");
-
-                            _checkOutRequest = true;
-
-                            break;
-                        }
-                }
+                return;
             }
+
+            Console.WriteLine("\nLog doesn`t save to file");
         }
     }
 }
