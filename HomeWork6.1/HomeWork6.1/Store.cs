@@ -1,5 +1,6 @@
-﻿using Service;
-using System.Text;
+﻿using Models;
+using Repository;
+using Service;
 
 namespace HomeWork6._1
 {
@@ -21,49 +22,42 @@ namespace HomeWork6._1
 
         public void Start()
         {
-            List<string> listItem = CreateListItemId();
+            List<Item> order = CreateOrder();
 
-            Console.WriteLine(GetBill(listItem));
+            ShoppingCartService shoppingCart = GetNewCart();
 
-            int totalSumBill = GetTotalPrice(listItem);
+            string idOrder = shoppingCart.AddOrder(order);
 
-            Console.WriteLine($"Total Price {totalSumBill}");
+            int Totalsum = shoppingCart.GetOder(idOrder).ListItem.Select(p=>p.Price).Sum();
+
+            Console.WriteLine("TotalSum = " + Totalsum);
         }
-        public List<string> CreateListItemId()
+
+        private List<Item> CreateOrder()
         {
             int countItem = new Random().Next(5, 11);
 
-            List<string> listItemId = new List<string>();
+            List<string> listId = new List<string>();
+
+            List<Item> listItem = new List<Item>();
 
             for (int i = 0; i < countItem; i++)
             {
-                listItemId.Add(_itemService.AddItem(GetNameItem(), GetAmountItem(), GetPriceItem()));
+                listId.Add(_itemService.AddItem(GetNameItem(), GetAmountItem(), GetPriceItem()));
             }
-            return listItemId;
-        }
-        public int GetTotalPrice(List<string> ListBuys)
-        {
-            int sum = 0;
 
-            foreach (var item in ListBuys)
+            foreach (var id in listId)
             {
-                sum += _itemService.GetItem(item).Price;
+                listItem.Add(_itemService.GetItem(id));
             }
-
-            return sum;
+            return listItem;
         }
-        public string GetBill(List<string> ListBuys)
+
+        private ShoppingCartService GetNewCart()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (var item in ListBuys)
-            {
-                _itemService.GetItem(item);
-
-                stringBuilder.Append($"{_itemService.GetInfoItem(item)}\n");
-            }
-            return stringBuilder.ToString();
+            return new ShoppingCartService(new ShoppingCartRepository(), new LoggerService(), new NotificationService(new LoggerService()));
         }
+               
         public string GetNameItem() => _itemsName[new Random().Next(0, _itemsName.Length)];
 
         public static int GetAmountItem() => new Random().Next(1, 51);

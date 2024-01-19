@@ -11,9 +11,9 @@ namespace Service
             _loggerService = loggerService;
         }
 
-        public void Notify(string message)
-        {
-            string massageToNotify = $"This message send you to email: {message}";
+        public void Notify(NotifyType notifyType, string message)
+        { 
+            string massageToNotify = $"This message send you to: {notifyType}";
 
             _loggerService.log(LogType.Info, massageToNotify);
         }

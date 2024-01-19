@@ -31,7 +31,7 @@ namespace Service
 
             _loggerService.log(LogType.Info, messageLog);
 
-            _notificationService.Notify(messageNotify);
+            _notificationService.Notify(NotifyType.Console ,messageNotify);
 
             return id;
         }

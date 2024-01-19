@@ -11,8 +11,11 @@ namespace Repository
             ItemEntity item = new ItemEntity()
             {
                 Id = Guid.NewGuid().ToString(),
+
                 Name = name,
+
                 Amount = amount,
+
                 Price = price
             };
 
@@ -26,7 +29,7 @@ namespace Repository
             return _mockItemStorage;
         }
 
-        public ItemEntity GetItem(string id)
+        public ItemEntity? GetItem(string id)
         {
             foreach (var item in _mockItemStorage)
             {
