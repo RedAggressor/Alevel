@@ -92,7 +92,7 @@ namespace HomeWork7
                 compareValuesStr = Console.ReadLine().ToString();
             }
 
-            Sweets? resultOfFind = FindObjectToParams(list, consoleKey, compareValuesStr, compareValuesInt);
+            Sweets? resultOfFind = list.FindObjectToParams(consoleKey, compareValuesStr, compareValuesInt);
 
             if (resultOfFind == null)
             {
