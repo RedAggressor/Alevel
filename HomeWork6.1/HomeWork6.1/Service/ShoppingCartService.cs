@@ -73,13 +73,14 @@ namespace Service
 
                 return;
             }
+            Console.WriteLine($"\nOrder id {id} bill");
 
             foreach (var item in listItem)
             {
                 Console.WriteLine($"Product name: {item.Name}, Count: { item.Amount}, Price: { item.Price} ");
             }
 
-            Console.WriteLine();
+            Console.WriteLine("Total sum for this order {0}",TotalSumForOrder(listItem));
         }
 
         private int TotalSumForOrder(List<Item> listorder)

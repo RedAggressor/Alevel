@@ -30,7 +30,7 @@ namespace HomeWork6._1
 
             int Totalsum = shoppingCart.GetOder(idOrder).ListItem.Select(p=>p.Price).Sum();
 
-            Console.WriteLine("TotalSum = " + Totalsum);
+            shoppingCart.ShowFullInfoOrder(idOrder);
         }
 
         private List<Item> CreateOrder()
