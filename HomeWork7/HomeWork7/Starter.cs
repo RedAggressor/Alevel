@@ -80,6 +80,8 @@ namespace HomeWork7
 
             string compareValuesStr = "";
 
+            Console.WriteLine("\nEnter value parametr for search:");
+
             if (consoleKey == ConsoleKey.O)
             {
                 while (!int.TryParse(Console.ReadLine(), out compareValuesInt))
@@ -115,6 +117,7 @@ namespace HomeWork7
             B - sort by growth,
             _=> exit sort, next step...");
         }
+
         private static ISweetsService? GetService(ConsoleKey consoleKey, ISweetsRepository sweets) =>
             consoleKey switch
             {
@@ -195,26 +198,6 @@ namespace HomeWork7
             }
         }
 
-        private static List<Sweets> SortToSomeParams(this List<Sweets> listSweets, ConsoleKey consoleKey) =>
-            consoleKey switch
-            {
-                ConsoleKey.N => listSweets.OrderBy(p => p.Name).ToList(),
-                ConsoleKey.O => listSweets.OrderBy(p => p.Weight).ToList(),
-                ConsoleKey.P => listSweets.OrderBy(p => p.GetType().Name).ToList(),
-                ConsoleKey.A => listSweets.OrderBy(p => p.Id).ToList(),
-                _ => listSweets
-            };
-
-        private static List<Sweets> SortToSomeParamsDescending(this List<Sweets> listSweets, ConsoleKey consoleKey) =>
-            consoleKey switch
-            {
-                ConsoleKey.N => listSweets.OrderByDescending(p => p.Name).ToList(),
-                ConsoleKey.O => listSweets.OrderByDescending(p => p.Weight).ToList(),
-                ConsoleKey.P => listSweets.OrderByDescending(p => p.GetType().Name).ToList(),
-                ConsoleKey.A => listSweets.OrderByDescending(p => p.Id).ToList(),
-                _ => listSweets
-            };
-
         private static List<Sweets> ChoseTypeSort(this List<Sweets> listSweets, ConsoleKey consoleKey)
         {
             ConsoleKey consoleKeySwitch;
@@ -242,6 +225,7 @@ namespace HomeWork7
                     return listSweets;
             }
         }
+
         private static void ShowOption()
         {
             Console.WriteLine(@"Choose params:
@@ -251,15 +235,5 @@ namespace HomeWork7
             A => Id
             _ => don`t, to next step...");
         }
-
-        private static Sweets? FindObjectToParams(this List<Sweets> listSweets, ConsoleKey consoleKey, string compareValuesStr = "", int compareValuesInt = 0) =>
-           consoleKey switch
-           {
-               ConsoleKey.N => listSweets.Find(p => p.Name == compareValuesStr),
-               ConsoleKey.O => listSweets.Find(p => p.Weight == compareValuesInt),
-               ConsoleKey.P => listSweets.Find(p => p.GetType().Name == compareValuesStr),
-               ConsoleKey.A => listSweets.Find(p => p.Id == compareValuesStr),
-               _ => null
-           };
     }
 }
