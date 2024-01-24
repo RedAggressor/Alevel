@@ -28,7 +28,7 @@ namespace Services
 
         private static void DeleteOverFile()
         {
-            if ((Directory.GetFiles(_path).Length >= 3))
+            if ((Directory.GetFiles(_path).Length >= 4))
             {
                 File.Delete(Directory.GetFiles(_path).First());
             }
