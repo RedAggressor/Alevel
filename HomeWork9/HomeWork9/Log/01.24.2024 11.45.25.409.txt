@@ -1,0 +1,283 @@
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Error:I broke a logic
+24.01.2024 11:45:25:Error:Action failed by reason: System.Exception: Exception of type 'System.Exception' was thrown.
+   at HomeWork9.Action.ThrowExeption() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 29
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 55
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Info:Start method
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
+24.01.2024 11:45:25:Warning:Skipped logic in method
+24.01.2024 11:45:25:Error:Action got this custom Exception: HomeWork9.BusinessException: Exception of type 'HomeWork9.BusinessException' was thrown.
+   at HomeWork9.Action.BusinessException() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\Action.cs:line 22
+   at HomeWork9.App.RunOneOfMethodAction(Int32 number) in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 50
+   at HomeWork9.App.Run() in C:\Users\Сім'я\source\repos\HomeWork9\HomeWork9\App.cs:line 26
