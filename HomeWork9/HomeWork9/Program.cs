@@ -22,7 +22,7 @@ namespace HomeWork9
             }
 
             IConfiguration configuration = new ConfigurationBuilder()
-                                .AddJsonFile("C:\\Users\\Сім'я\\source\\repos\\HomeWork9\\HomeWork9\\Log\\config.json")
+                                .AddJsonFile("config.json")
                                 .Build();
 
             var serviceCollection = new ServiceCollection();

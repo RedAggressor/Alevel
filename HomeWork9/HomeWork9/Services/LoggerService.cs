@@ -17,7 +17,7 @@ namespace Services
         }
         public void Log(LogType logType, string message)
         {
-            DateTime dateTime = DateTime.Now;
+            DateTime dateTime = DateTime.UtcNow;
 
             string messageLog = $"{dateTime}:{logType}:{message}";
 

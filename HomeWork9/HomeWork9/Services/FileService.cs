@@ -5,13 +5,13 @@ namespace Services
     internal class FileService : IFileService
     {
         private readonly static string str;
-        private const string _path = $"C:\\Users\\Сім'я\\source\\repos\\HomeWork9\\HomeWork9\\Log\\";
+        private const string _path = "C:\\projects\\Alevel\\HomeWork9\\HomeWork9\\Log\\";
 
         static FileService()
         {
             DeleteOverFile();
 
-            str = DateTime.Now.ToString("MM/dd/yyyy hh.mm.ss.ffftt");
+            str = DateTime.UtcNow.ToString("MM/dd/yyyy hh.mm.ss.ffftt");
         }
         
         public void SaveMessage(string message) 
@@ -20,15 +20,17 @@ namespace Services
             
             FileInfo file = new FileInfo(path);
             
-            using (StreamWriter swe = file.AppendText())
+            using (StreamWriter streamWriter = file.AppendText())
             {
-                swe.WriteLine(message);
+                streamWriter.WriteLine(message);
             }
         }
 
         private static void DeleteOverFile()
         {
-            if ((Directory.GetFiles(_path).Length >= 4))
+            int countFile = Directory.GetFiles(_path).OrderBy(p=>p).Count();
+
+            if (countFile >= 3)
             {
                 File.Delete(Directory.GetFiles(_path).First());
             }
