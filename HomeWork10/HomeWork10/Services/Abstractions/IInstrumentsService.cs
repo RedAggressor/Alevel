@@ -1,12 +1,10 @@
-﻿using HomeWork10.Models.Enums;
-using HomeWork10.Models;
-using System.Drawing;
+﻿using HomeWork10.Models;
 
 namespace HomeWork10.Services.Abstractions
 {
     internal interface IInstrumentsService
     {
-        public string AddInstruments(string name, int consumes, Color color, TypeInstruments typeAppliance, int weight);
+        public string AddInstruments(Instruments instruments);
         public Instruments GetInstruments(string id);
     }
 }

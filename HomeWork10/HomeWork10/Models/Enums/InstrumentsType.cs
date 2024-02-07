@@ -1,6 +1,6 @@
 ﻿namespace HomeWork10.Models.Enums
 {
-    internal enum TypeInstruments
+    internal enum InstrumentsType
     {
         Drill,
         Jigsaw,

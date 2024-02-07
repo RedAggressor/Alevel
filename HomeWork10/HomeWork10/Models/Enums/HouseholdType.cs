@@ -1,6 +1,6 @@
 ﻿namespace HomeWork10.Models.Enums
 {
-    internal enum TypeHousehold
+    internal enum HouseholdType
     {
         VacuumСleaner,
         Microwave,

@@ -5,6 +5,6 @@ namespace HomeWork10.Models
     internal class Instruments : ElectricalAppliances
     {
         public int Weight { get; set; }
-        public TypeInstruments TypeInstruments { get; set; }
+        public InstrumentsType InstrumentsType { get; set; }
     }
 }

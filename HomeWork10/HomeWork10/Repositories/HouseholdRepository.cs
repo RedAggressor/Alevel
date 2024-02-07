@@ -1,7 +1,5 @@
 ﻿using HomeWork10.Entities;
-using HomeWork10.Models.Enums;
 using HomeWork10.Repositories.Abstructs;
-using System.Drawing;
 
 namespace HomeWork10.Repositories
 {
@@ -9,17 +7,17 @@ namespace HomeWork10.Repositories
     {
         private readonly List<HouseholdEntity> _mockServer = new List<HouseholdEntity>();
 
-        public string AddHousehold(string name, int consumes, int power, BrendEntity brend, Color color, TypeHousehold typeAppliance)
+        public string AddHousehold(HouseholdEntity householdEntity)
         {
             HouseholdEntity household = new HouseholdEntity()
             {
                 Id = Guid.NewGuid().ToString(),
-                Name = name,
-                Consumes = consumes,
-                Power = power,
-                Brend = brend,
-                Color = color,
-                TypeHousehold = typeAppliance,
+                Name = householdEntity.Name,
+                Consumes = householdEntity.Consumes,
+                Power = householdEntity.Power,
+                Brend = householdEntity.Brend,
+                Color = householdEntity.Color,
+                HouseholdType = householdEntity.HouseholdType,
             };
 
             _mockServer.Add(household);

@@ -1,6 +1,5 @@
 ﻿using HomeWork10.Models;
 using HomeWork10.Services.Abstractions;
-using System.Runtime.CompilerServices;
 
 namespace HomeWork10.Services
 {
@@ -15,7 +14,7 @@ namespace HomeWork10.Services
             _room = new Room(); 
         }
        
-        public void TurnOnOffApliance(ElectricalAppliances electrical)                              
+        public void SwitchApliances(ElectricalAppliances electrical)                              
         {
             Console.WriteLine($"Connect to rosette {electrical.Id} : {electrical.GetType().Name} y/n?");
            
@@ -29,7 +28,7 @@ namespace HomeWork10.Services
                                    .Sum();
         }
 
-        public void ShowFullInfo()
+        public void ShowInfoAboutApliance()
         {
             List<ElectricalAppliances> appliances = GetRoom().Appliances;
 

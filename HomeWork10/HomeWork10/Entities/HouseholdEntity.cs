@@ -6,6 +6,6 @@ namespace HomeWork10.Entities
     internal class HouseholdEntity : ElectricalAplianceEntity
     {
         public Color Color { get; set; }
-        public TypeHousehold TypeHousehold { get; set; }
+        public HouseholdType HouseholdType { get; set; }
     }
 }

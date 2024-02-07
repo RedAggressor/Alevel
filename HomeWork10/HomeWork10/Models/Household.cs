@@ -6,6 +6,6 @@ namespace HomeWork10.Models
     internal class Household : ElectricalAppliances
     {
         public Color Color { get; set; }
-        public TypeHousehold TypeHousehold { get; set; }
+        public HouseholdType HouseholdType { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using HomeWork10.Entities;
-using HomeWork10.Models.Enums;
 using HomeWork10.Repositories.Abstructs;
 
 namespace HomeWork10.Repositories
@@ -8,17 +7,17 @@ namespace HomeWork10.Repositories
     {
         private readonly List<InstrumentsEntity> _mock = new List<InstrumentsEntity>();
 
-        public string AddInstruments(string name, int consumes, int power, BrendEntity brend, TypeInstruments typeAppliance, int weight)
+        public string AddInstruments(InstrumentsEntity instruments)
         {
             InstrumentsEntity entity = new InstrumentsEntity()
             {
                 Id = Guid.NewGuid().ToString(),
-                Name = name,
-                Consumes = consumes,
-                Power = power,
-                Brend = brend,
-                Weight = weight,
-                TypeInstruments = typeAppliance,
+                Name = instruments.Name,
+                Consumes = instruments.Consumes,
+                Power = instruments.Power,
+                Brend = instruments.Brend,
+                Weight = instruments.Weight,
+                InstrumentsType = instruments.InstrumentsType
             };
 
             _mock.Add(entity);

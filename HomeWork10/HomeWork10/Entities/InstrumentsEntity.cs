@@ -5,6 +5,6 @@ namespace HomeWork10.Entities
     internal class InstrumentsEntity : ElectricalAplianceEntity
     {
         public int Weight { get; set; }
-        public TypeInstruments TypeInstruments { get; set; }
+        public InstrumentsType InstrumentsType { get; set; }
     }
 }

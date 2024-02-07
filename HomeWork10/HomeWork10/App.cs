@@ -10,22 +10,22 @@ namespace HomeWork10
         private readonly IHouseholdService _householdService;
         private readonly IRoomService _roomService;
         private readonly IInstrumentsService _instrumentsService;
-        
+
         public App(IHouseholdService householdRepository, IRoomService roomService, IInstrumentsService instrumentsService)
-        { 
+        {
             _householdService = householdRepository;
             _roomService = roomService;
             _instrumentsService = instrumentsService;
         }
         public void Start()
         {
-            bool noSkipe = true;
+            bool skip = true;
 
-            while (noSkipe)
+            while (skip)
             {
                 ConsoleKey consoleKey = chooseOneOfAplince();
                 switch (consoleKey)
-                { 
+                {
                     case ConsoleKey.H:
                         {
                             Household household = Createhousehold();
@@ -41,13 +41,13 @@ namespace HomeWork10
                     default:
                         {
                             Console.WriteLine("Exite to Constructor...");
-                            noSkipe = false;
+                            skip = false;
                             break;
                         }
                 }
             }
-                
-            _roomService.ShowFullInfo();
+
+            _roomService.ShowInfoAboutApliance();
 
             Room room = _roomService.GetRoom();
 
@@ -55,15 +55,15 @@ namespace HomeWork10
 
             room = ChageRoom(room, emptyAppliances);
 
-            _roomService.ShowFullInfo();
+            _roomService.ShowInfoAboutApliance();
 
             room = ChageRoom(room, emptyAppliances);
 
-            _roomService.ShowFullInfo();
+            _roomService.ShowInfoAboutApliance();
 
-             room.Appliances = FindApliances(room);
-            
-            _roomService.ShowFullInfo();
+            room.Appliances = FindApliances(room);
+
+            _roomService.ShowInfoAboutApliance();
         }
 
         private List<ElectricalAppliances> FindApliances(Room room)
@@ -161,15 +161,15 @@ namespace HomeWork10
 
             return Console.ReadKey().Key;
         }
-        
+
         private void SetConsoments(out int number)
         {
             do
             {
                 Console.WriteLine("enter value consuments your apliance:");
             }
-            while (!int.TryParse(Console.ReadLine(),out number));
-        
+            while (!int.TryParse(Console.ReadLine(), out number));
+
         }
 
         private void SetName(out string name)
@@ -207,7 +207,7 @@ namespace HomeWork10
                 _ => Color.Indigo
             };
 
-        private void SetTypeHousehold(out TypeHousehold typeHousehold)
+        private void SetTypeHousehold(out HouseholdType typeHousehold)
         {
             ConsoleKey consoleKey;
             do
@@ -235,16 +235,16 @@ namespace HomeWork10
                 ConsoleKey.Y => false,
                 _ => true
             };
-        private TypeHousehold ChooseTypeHousehold(ConsoleKey consoleKey) =>
+        private HouseholdType ChooseTypeHousehold(ConsoleKey consoleKey) =>
             consoleKey switch
             {
-                ConsoleKey.B => TypeHousehold.Microwave,
-                ConsoleKey.W => TypeHousehold.VacuumСleaner,
-                ConsoleKey.G => TypeHousehold.ElectricKettle,
-                ConsoleKey.S => TypeHousehold.Refrigerator,
-                ConsoleKey.Y => TypeHousehold.WashingMachine
+                ConsoleKey.B => HouseholdType.Microwave,
+                ConsoleKey.W => HouseholdType.VacuumСleaner,
+                ConsoleKey.G => HouseholdType.ElectricKettle,
+                ConsoleKey.S => HouseholdType.Refrigerator,
+                ConsoleKey.Y => HouseholdType.WashingMachine
             };
-       
+
         private Household Createhousehold()
         {
             SetName(out string name);
@@ -253,9 +253,18 @@ namespace HomeWork10
 
             SetColor(out Color color);
 
-            SetTypeHousehold(out TypeHousehold typeHousehold);
+            SetTypeHousehold(out HouseholdType typeHousehold);
 
-            string idHousehold = _householdService.AddHousehold(name, consumens, color, typeHousehold);
+            Household household = new Household()
+            {
+                Name = name,
+                Consumes = consumens,
+                Color = color,
+                HouseholdType = typeHousehold
+
+            };
+
+            string idHousehold = _householdService.AddHousehold(household);
 
             return _householdService.GetHouseholds(idHousehold);
         }
@@ -266,17 +275,23 @@ namespace HomeWork10
 
             SetConsoments(out int consumens);
 
-            SetColor(out Color color);
-
-            SetTypeInstruments(out TypeInstruments typeInstruments);
+            SetTypeInstruments(out InstrumentsType typeInstruments);
 
             SetWeight(out int weight);
 
-            string idInstruments = _instrumentsService.AddInstruments(name, consumens, color, typeInstruments, weight);
+            Instruments instruments = new Instruments()
+            {
+                Name = name,
+                Consumes = consumens,
+                InstrumentsType = typeInstruments,
+                Weight = weight
+            };
+
+            string idInstruments = _instrumentsService.AddInstruments(instruments);
 
             return _instrumentsService.GetInstruments(idInstruments);
         }
-        private void SetTypeInstruments(out TypeInstruments typeInstruments)
+        private void SetTypeInstruments(out InstrumentsType typeInstruments)
         {
             ConsoleKey consoleKey;
             do
@@ -305,19 +320,19 @@ namespace HomeWork10
 
         }
 
-        private TypeInstruments ChooseTypeInstruments(ConsoleKey consoleKey) =>
+        private InstrumentsType ChooseTypeInstruments(ConsoleKey consoleKey) =>
             consoleKey switch
             {
-                ConsoleKey.B => TypeInstruments.WeldingMachine,
-                ConsoleKey.W => TypeInstruments.CircularSaw,
-                ConsoleKey.G => TypeInstruments.Screwdriver,
-                ConsoleKey.S => TypeInstruments.Drill,
-                ConsoleKey.Y => TypeInstruments.Jigsaw
+                ConsoleKey.B => InstrumentsType.WeldingMachine,
+                ConsoleKey.W => InstrumentsType.CircularSaw,
+                ConsoleKey.G => InstrumentsType.Screwdriver,
+                ConsoleKey.S => InstrumentsType.Drill,
+                ConsoleKey.Y => InstrumentsType.Jigsaw
             };
 
         private void AddToRoom(ElectricalAppliances electricalAppliances)
         {
-            _roomService.TurnOnOffApliance(electricalAppliances);
+            _roomService.SwitchApliances(electricalAppliances);
         }
     }
 }

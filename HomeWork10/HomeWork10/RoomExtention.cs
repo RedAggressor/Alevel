@@ -32,7 +32,7 @@ namespace HomeWork10
 
         public static List<ElectricalAppliances> FindApliance(this List<ElectricalAppliances> electricals, string firstChar, int atValue, int toValue)
         {
-            return electricals.FindAll(p => p.Name[0].ToString().ToLower() == firstChar).FindAll(p => p.Consumes >= atValue && p.Consumes <= toValue).FindAll(p => p.Power >= atValue && p.Power <= toValue).ToList();
+            return electricals.FindAll(p => p.Name[0].ToString().ToLower() == firstChar).FindAll(p => p.Consumes >= atValue && p.Consumes <= toValue).ToList();
         }
     }
 }
