@@ -41,7 +41,7 @@ namespace HomeWork10.Services
 
             string id = _repository.AddHousehold(entity);
 
-            string messageLog = $"succes create: {household.Name} {household.Consumes} {power} {household.Color} {household.HouseholdType} {brend.Name}";
+            string messageLog = $"succes create: {household.Name} {household.Consumes} {power} {household.Color} {household.HouseholdType}";
 
             _notify.Notify(NotifyType.Console, messageLog);
             _logger.Log(LogType.Info, messageLog);

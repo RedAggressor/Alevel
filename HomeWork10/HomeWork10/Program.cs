@@ -16,7 +16,8 @@ namespace HomeWork10
             {
                 serviceCollection.AddOptions<LoggerOption>().Bind(configuration.GetSection("Logger"));
 
-                serviceCollection.AddTransient<IInstrumentsRepository, InstrumentsRepository>()
+                serviceCollection.AddTransient<IBrendRepository,BrendRepository>()
+                    .AddTransient<IInstrumentsRepository, InstrumentsRepository>()
                     .AddTransient<IInstrumentsService, InstrumentsService>()
                     .AddTransient<IRoomService, RoomService>()
                     .AddTransient<IRosetteService, RosetteService>()

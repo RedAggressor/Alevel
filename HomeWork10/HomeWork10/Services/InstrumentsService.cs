@@ -35,12 +35,11 @@ namespace HomeWork10.Services
                 Power = power,
                 Weight = instruments.Weight,
                 InstrumentsType = instruments.InstrumentsType
-
             };
 
             string id = _repository.AddInstruments(entity);
 
-            string messageLog = $"succes create: {instruments.Name} {instruments.Consumes} {power} {instruments.InstrumentsType} {brend.Name} {instruments.Weight}";
+            string messageLog = $"succes create: {instruments.Name} {instruments.Consumes} {power} {instruments.InstrumentsType} {instruments.Weight}";
 
             _notify.Notify(NotifyType.Console, messageLog);
             _logger.Log(LogType.Info, messageLog);

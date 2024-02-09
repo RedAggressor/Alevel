@@ -225,6 +225,7 @@ namespace HomeWork10
 
             typeHousehold = ChooseTypeHousehold(consoleKey);
         }
+
         private bool CheckButton(ConsoleKey consoleKey) =>
             consoleKey switch
             {
@@ -235,6 +236,7 @@ namespace HomeWork10
                 ConsoleKey.Y => false,
                 _ => true
             };
+
         private HouseholdType ChooseTypeHousehold(ConsoleKey consoleKey) =>
             consoleKey switch
             {
@@ -291,6 +293,7 @@ namespace HomeWork10
 
             return _instrumentsService.GetInstruments(idInstruments);
         }
+
         private void SetTypeInstruments(out InstrumentsType typeInstruments)
         {
             ConsoleKey consoleKey;
