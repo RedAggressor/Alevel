@@ -12,6 +12,7 @@ namespace HomeWork13
     public class Second
     {
         private int _result;
+
         public Predicate<int> Calc(int x, int y, Func<int, int, int> func)
         {
             _result = func(x, y);
@@ -34,13 +35,19 @@ namespace HomeWork13
         }
         static void Main(string[] args)
         {
-            Second second = new();
+            Second second = new Second();
 
-            var tig = second.Calc(10, 5, Multiply);
+            int firstValue = 10;
+
+            int secondValue = 5;
+
+            var tig = second.Calc(firstValue, secondValue, First.Multiply);
 
             FirstHandler firstHandler = Show;
 
-            firstHandler(tig(3));
+            int divisionBy = 3;
+
+            firstHandler(tig(divisionBy));
         }
     }
 }
