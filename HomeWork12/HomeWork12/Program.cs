@@ -3,7 +3,7 @@ using HomeWork12.Repositories.Abstractions;
 using HomeWork12.Services;
 using HomeWork12.Services.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
-
+using System.Text;
 
 namespace HomeWork12
 {
@@ -17,6 +17,8 @@ namespace HomeWork12
                     .AddTransient<IContactRepository, ContactRepository>()
                     .AddTransient<StartUp>();
             }
+
+            Console.OutputEncoding = UTF8Encoding.UTF8;
 
             var serviceCollection = new ServiceCollection();
             ConfigreServices(serviceCollection);

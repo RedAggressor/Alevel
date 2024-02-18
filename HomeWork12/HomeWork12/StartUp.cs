@@ -1,7 +1,6 @@
 ﻿using HomeWork12.Models;
 using HomeWork12.Services.Abstractions;
 using System.Globalization;
-using System.Text;
 
 namespace HomeWork12
 {
@@ -15,8 +14,6 @@ namespace HomeWork12
         }
         public void Start()
         {
-            Console.OutputEncoding = UTF8Encoding.UTF8;
-
             UseCultur();
 
             AddContact();

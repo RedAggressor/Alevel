@@ -62,7 +62,7 @@ namespace HomeWork12.Services
         {
             Regex numberCheck = new Regex("[0-9]");
 
-            Regex symbolCheck = new Regex("[^0-9a-zA-Zа-яА-ЯіїІЇ ]");
+            Regex symbolCheck = new Regex(@"[^0-9a-zа-яії ]", RegexOptions.IgnoreCase);
 
             if (numberCheck.IsMatch(firstName) || numberCheck.IsMatch(lastName))
             {
