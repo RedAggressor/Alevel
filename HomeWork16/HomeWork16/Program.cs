@@ -8,7 +8,7 @@ internal class Program
     {
         var messageBox = new MessageBox();
 
-        messageBox.closedWindods += (State state) =>
+        messageBox.NotifyState += (State state) =>
         {
             if (state == State.OK)
             {
@@ -20,7 +20,7 @@ internal class Program
             }
         };
 
-        var task = Task.Run(() => messageBox.Open());
+        var task = Task.Run(() => messageBox.OpenAsync());
 
         task.Wait();
     }

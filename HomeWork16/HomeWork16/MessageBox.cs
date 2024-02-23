@@ -6,8 +6,8 @@ public delegate void MessageBoxDelegate (State state);
 
 internal class MessageBox
 {
-    public event MessageBoxDelegate? closedWindods;
-    public async Task Open()
+    public event MessageBoxDelegate? NotifyState;
+    public async Task OpenAsync()
     {
         Console.WriteLine("Window is open");
 
@@ -17,6 +17,6 @@ internal class MessageBox
 
         var randomState = (State)new Random().Next(0, 2);
 
-        closedWindods?.Invoke(randomState);
+        NotifyState?.Invoke(randomState);
     }
 }
