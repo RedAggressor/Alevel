@@ -3,7 +3,7 @@
 internal class Files
 {
     public string? NameFile { get; set; } = DateTime.UtcNow.ToString("MM/dd/yyyy hh.mm.ss.ffftt");
-    public string? Path { get; } = "C:\\Users\\Сім'я\\source\\repos\\HomeWork 17(Modul 3)\\HomeWork 17(Modul 3)\\Backup\\";
+    public string? Path { get; } = "C:\\projects\\Alevel\\HomeWork 17(Modul 3)\\HomeWork 17(Modul 3)\\Backup\\";
     public string? FullPuth { get; set; }
     public int Counter { get; set; } = 0;
 

@@ -1,0 +1,6 @@
+{
+    "logger": {
+        "Puth": "Log.txt",
+        "LimitMessageToFile": 12
+    }
+}
