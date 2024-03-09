@@ -4,13 +4,11 @@ namespace HomeWork18.Dtos
 {
     internal class ResourceDto
     {
-        [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string? ColorName { get; set; }
 
-        [JsonProperty(PropertyName = "year")]
         public int Year { get; set; }
 
         [JsonProperty(PropertyName = "color")]

@@ -2,7 +2,8 @@
 {
     internal interface IInternalHttpClientService
     {
-        public Task<TResponse> SendAsync<TResponse, TRequest>(string url, HttpMethod httpMethod, TRequest? content = null)
-            where TRequest : class;
+        public Task SendAsync(string url, HttpMethod method, object? content = null);
+        public Task<TResponse> SendAsync<TResponse>(string url, HttpMethod method, object? content = null);
+
     }
 }

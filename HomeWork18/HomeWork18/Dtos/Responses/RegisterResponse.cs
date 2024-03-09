@@ -8,6 +8,6 @@ namespace HomeWork18.Dtos.Responses
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "token")]
-        public string Token { get; set; }
+        public string? Token { get; set; }
     }
 }

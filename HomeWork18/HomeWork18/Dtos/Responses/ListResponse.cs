@@ -2,25 +2,12 @@
 
 namespace HomeWork18.Dtos.Responses
 {
-    internal class ListResponse<T>
+    internal class ListResponse<T> : PageDto
         where T : class
     {
-        [JsonProperty(PropertyName = "page")]
-        public int Page { get; set; }
-
-        [JsonProperty(PropertyName = "per_page")]
-        public int CountUsersForPage { get; set; }
-
-        [JsonProperty(PropertyName = "total")]
-        public int TotalUsers { get; set; }
-
-        [JsonProperty(PropertyName = "total_pages")]
-        public int TatalPage { get; set; }
-
         [JsonProperty(PropertyName = "data")]
-        public List<T>? ListDto { get; set; }
+        public List<T> Data { get; set; }
 
-        [JsonProperty(PropertyName = "support")]
         public SupportDto Support { get; set; }
 
     }

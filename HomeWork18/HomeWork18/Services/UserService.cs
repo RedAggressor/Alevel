@@ -1,236 +1,229 @@
 ﻿using HomeWork18.Config;
 using HomeWork18.Dtos;
-using HomeWork18.Dtos.Requests;
 using HomeWork18.Dtos.Responses;
+using HomeWork18.Enums;
+using HomeWork18.Models;
 using HomeWork18.Services.Abstracts;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace HomeWork18.Services
 {
-    internal class UserService : IUserService
+    internal class UserService : BaseService, IUserService
     {
-        private readonly IInternalHttpClientService _httpClientService;
+        private readonly IInternalHttpClientService _httpClient;
         private readonly ILogger<UserService> _logger;
         private readonly ApiOption _apiOption;
-        private const string? _userApi = "api/users";
-        private const string? _sourceApi = "api/unknown";
-        private const string? _registerApi = "api/register";
-        private const string? _loginApi = "api/login";
 
         public UserService(
             IInternalHttpClientService internalHttpClientService,
             ILogger<UserService> logger,
             IOptions<ApiOption> apiOption)
         {
-            _httpClientService = internalHttpClientService;
+            _httpClient = internalHttpClientService;
             _logger = logger;
             _apiOption = apiOption.Value;
         }
 
-        public async Task<SingleResponse<UserDto>> GetUserAsync(int id)
+        public async Task<User> GetUserAsync(int id)
         {
-            var result = await _httpClientService
-                .SendAsync<SingleResponse<UserDto>, object>(
-                    $"{_apiOption.Host}{_userApi}/{id}",
-                    HttpMethod.Get);
-
-            if (result?.Data != null)
+            return await ExecuteSafeAsync(async () =>
             {
-                _logger.LogInformation($"User with id = {result.Data.Id} was found");
-            }
+                var result = await _httpClient
+                    .SendAsync<SingleResponse<UserDto>>(
+                        $"{_apiOption.Host}/{ApiType.users}/{id}",
+                        HttpMethod.Get);
 
-            return result;
+                if (result?.Data != null)
+                {
+                    _logger.LogInformation($"User with id = {result.Data.Id} was found");
+
+                    return new User()
+                    {
+                        Id = result.Data.Id,
+                        FirstName = result.Data.FirstName,
+                        LastName = result.Data.LastName,
+                        Email = result.Data.Email,
+                        Avatar = result.Data.Avatar,
+                    };
+                }
+
+                return null!;
+            });
         }
 
-        public async Task<ListResponse<UserDto>> GetListUsersAsync(int page)
+        public async Task<ListData<User>> GetUsersAsync(int page)
         {
-            var result = await _httpClientService
-                .SendAsync<ListResponse<UserDto>, object>(
-                    $"{_apiOption.Host}{_userApi}?page={page}",
-                    HttpMethod.Get);
-
-            if (result != null)
+            return await ExecuteSafeAsync(async () =>
             {
-                _logger.LogInformation($"Users was found");
-            }
+                var result = await _httpClient
+                    .SendAsync<ListResponse<UserDto>>(
+                        $"{_apiOption.Host}/{ApiType.users}?{ApiType.page}={page}",
+                        HttpMethod.Get);
 
-            return result;
+                if (result != null)
+                {
+                    _logger.LogInformation($"Users was found");
+
+                    return new ListData<User>
+                    {
+                        Data = result.Data.Select(s => new User()
+                        {
+                            Id = s.Id,
+                            FirstName = s.FirstName,
+                            LastName = s.LastName,
+                            Avatar = s.Avatar,
+                            Email = s.Email,
+                        }).ToList(),
+                    };
+                }
+
+                return null!;
+            });
         }
 
-        public async Task<ListResponse<ResourceDto>> GetListResourcesAsync()
+        public async Task<Employee> CreateEmployeeAsync(string name, string job)
         {
-            var result = await _httpClientService
-                .SendAsync<ListResponse<ResourceDto>, object>(
-                    $"{_apiOption.Host}{_sourceApi}",
-                    HttpMethod.Get);
-
-            if (result != null)
+            return await ExecuteSafeAsync(async () =>
             {
-                _logger.LogInformation($"Source was found");
-            }
+                var employeeDto = new EmployeeDto()
+                {
+                    Name = name,
+                    Job = job
+                };
 
-            return result;
+                var employee = await _httpClient
+                    .SendAsync<EmployeeDto>(
+                        $"{_apiOption.Host}/{ApiType.users}",
+                        HttpMethod.Post,
+                        employeeDto);
+
+                if (employee != null)
+                {
+                    _logger.LogInformation($"Created user: {employee.Id}");
+
+                    return new Employee()
+                    {
+                        Id = employee.Id,
+                        Name = employee.Name,
+                        Job = employee.Job,
+                        CreatedAt = employee.CreatedAt,
+                        UpdatedAt = employee.UpdatedAt,
+                    };
+                }
+
+                return null!;
+            });
         }
 
-        public async Task<SingleResponse<ResourceDto>> GetResourceAsync(int page)
+        public async Task<Employee> UpdateEmployeeAsync(int id, string name, string job)
         {
-            var result = await _httpClientService
-                .SendAsync<SingleResponse<ResourceDto>, object>(
-                    $"{_apiOption.Host}{_sourceApi}/{page}",
-                    HttpMethod.Get);
-
-            if (result?.Data != null)
+            return await ExecuteSafeAsync(async () =>
             {
-                _logger.LogInformation($"Source with id = {result.Data.Id} was found");
-            }
+                var employeeRequest = new EmployeeDto()
+                {
+                    Name = name,
+                    Job = job,
+                };
 
-            return result;
+                var update = await _httpClient
+                    .SendAsync<EmployeeDto>(
+                        $"{_apiOption.Host}/{ApiType.users}/{id}",
+                        HttpMethod.Put,
+                        employeeRequest);
+
+                if (update != null)
+                {
+                    _logger.LogInformation($"Employee was {update.Name} {update.Job} succefull update!!");
+
+                    return new Employee()
+                    {
+                        Id = update.Id,
+                        Name = update.Name,
+                        Job = update.Job,
+                        CreatedAt = update.CreatedAt,
+                        UpdatedAt = update.UpdatedAt,
+                    };
+                }
+
+                return null!;
+            });
         }
 
-        public async Task<UserCreateResponse> CreateUser(string name, string job)
+        public async Task<Employee> ModifyEmployeeAsync(int id, string name, string job)
         {
-            var user = new UserRequest()
+            return await ExecuteSafeAsync(async () =>
             {
-                Name = name,
-                Job = job
-            };
+                var changeData = new EmployeeDto()
+                {
+                    Name = name,
+                    Job = job,
+                };
 
-            var result = await _httpClientService
-                .SendAsync<UserCreateResponse, UserRequest>(
-                    $"{_apiOption.Host}{_userApi}",
-                    HttpMethod.Post,
-                    user);
+                var update = await _httpClient
+                    .SendAsync<EmployeeDto>(
+                        $"{_apiOption.Host}/{ApiType.users}/{id}",
+                        HttpMethod.Patch,
+                        changeData);
 
-            if (result != null)
-            {
-                _logger.LogInformation($"Created user: {result.Id}");
-            }
+                if (update != null)
+                {
+                    _logger.LogInformation($"Employee was {update.Name} {update.Job} modify succefull!!");
 
-            return result;
+                    return new Employee()
+                    {
+                        Id = update.Id,
+                        Name = update.Name,
+                        Job = update.Job,
+                        CreatedAt = update?.CreatedAt,
+                        UpdatedAt = update?.UpdatedAt,
+                    };
+                }
+
+                return null!;
+            });
         }
 
-        public async Task<UpdateUserResponse> UpdateUserPutAsync(UserCreateResponse user)
+        public async Task<VoidResult> DeleteEmployee(int id)
         {
-            var changeData = new UserRequest()
+            return await ExecuteSafeAsync<VoidResult>(async () =>
             {
-                Name = user.Name,
-                Job = user.Job,
-            };
+                await _httpClient.SendAsync(
+                        $"{_apiOption.Host}/{ApiType.users}/{id}",
+                        HttpMethod.Delete);
 
-            var update = await _httpClientService
-                .SendAsync<UpdateUserResponse, UserRequest>(
-                    $"{_apiOption.Host}{_userApi}/{user.Id}",
-                    HttpMethod.Put,
-                    changeData);
-
-            if (update != null)
-            {
-                _logger.LogInformation($"User was {user.Name} {user.Job} succefull update!!");
-            }
-
-            return update;
-        }
-
-        public async Task<UpdateUserResponse> UpdateUserPathAsync(UserCreateResponse user)
-        {
-            var changeData = new UserRequest()
-            {
-                Name = user.Name,
-                Job = "zion resident123",
-            };
-
-            var update = await _httpClientService
-                .SendAsync<UpdateUserResponse, UserRequest>(
-                    $"{_apiOption.Host}{_userApi}/{user.Id}",
-                    HttpMethod.Patch,
-                    changeData);
-
-            if (update != null)
-            {
-                _logger.LogInformation($"User was {user.Name} {user.Job} succefull update!!");
-            }
-
-            return update;
-        }
-
-        public async Task<object> DeleteUser(int id)
-        {
-            var delete = await _httpClientService
-                .SendAsync<UpdateUserResponse, UserRequest>(
-                    $"{_apiOption.Host}{_userApi}/{id}",
-                    HttpMethod.Delete);
-
-            if (delete == null)
-            {
                 _logger.LogInformation($"User {id} was succefull delete!!");
-            }
 
-            return delete;
+                return null!;
+            });
         }
 
-        public async Task<RegisterResponse> RegisterationAsync(string? email = null, string? password = null)
+        public async Task<ListData<User>> GetDelaiesUsersAsync(int page)
         {
-            var registration = new RegisterRequest()
+            return await ExecuteSafeAsync(async () =>
             {
-                Email = email,
-                Password = password
-            };
+                var result = await _httpClient.SendAsync<ListResponse<UserDto>>($"{_apiOption.Host}/{ApiType.users}?{ApiType.delay}={page}", HttpMethod.Get);
 
-            var regist = await _httpClientService
-                .SendAsync<RegisterResponse, RegisterRequest>(
-                $"{_apiOption.Host}{_registerApi}",
-                HttpMethod.Post,
-                registration);
+                if (result != null)
+                {
+                    _logger.LogInformation($"Delay was found");
 
-            if (regist != null)
-            {
-                _logger.LogInformation($"Acount {registration.Email} {regist.Id} succesfull create ");
-            }
-            else
-            {
-                _logger.LogError("Missing email or password");
-            }
-            
-            return regist;
-        }
+                    return new ListData<User>()
+                    {
+                        Data = result.Data.Select(r => new User()
+                        {
+                            Id = r.Id,
+                            FirstName = r.FirstName,
+                            LastName = r.LastName,
+                            Avatar = r.Avatar,
+                            Email = r.Email,
 
-        public async Task<LoginResponse> LoginAsync(string? email = null, string? password = null)
-        {
-            var login = new LoginRequest()
-            {
-                Email = email,
-                Password = password
-            };
+                        }).ToList(),
+                    };
+                }
 
-            var regist = await _httpClientService
-                .SendAsync<LoginResponse, LoginRequest>(
-                $"{_apiOption.Host}{_loginApi}",
-                HttpMethod.Post,
-                login);
-
-            if (regist != null)
-            {
-                _logger.LogInformation($"Acount {login.Email} succesfull login ");
-            }
-            else
-            {
-                _logger.LogError("Missing email or password");
-            }
-
-            return regist;
-        }
-
-        public async Task<ListResponse<DelayDto>> GetDelayAsync(int page)
-        {
-            var result = await _httpClientService.SendAsync<ListResponse<DelayDto>, object>($"{_apiOption.Host}{_userApi}?delay={page}", HttpMethod.Get);
-
-            if (result != null)
-            {
-                _logger.LogInformation($"Delay was found");
-            }
-
-            return result;
+                return null!;
+            });
         }
     }
 }
