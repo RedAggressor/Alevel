@@ -16,6 +16,7 @@ internal class Program
             serviceCollection
                 .AddLogging(configure => configure.AddConsole())
                 .AddHttpClient()
+                .AddTransient<IAuthenticationService, AuthenticationService>()
                 .AddTransient<IResourseService, ResourceService>()
                 .AddTransient<IInternalHttpClientService, InternalHttpClientService>()
                 .AddTransient<IUserService, UserService>()

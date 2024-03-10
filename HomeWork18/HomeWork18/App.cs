@@ -6,44 +6,59 @@ namespace HomeWork18
     {
         private readonly IUserService _userService;
         private readonly IResourseService _resourseService;
+        private readonly IAuthenticationService _authenticationService;
 
-        public App(IUserService userService, IResourseService resourseService)
+        public App(
+            IUserService userService,
+            IResourseService resourseService,
+            IAuthenticationService authenticationService)
         {
             _userService = userService;
             _resourseService = resourseService;
+            _authenticationService = authenticationService;
         }
 
         public async Task StartUp()
         {
-            var users = await _userService.GetUsersAsync(2);
+            var getUsers = Task.Run(async () => await _userService.GetUsersAsync(2));
+            var getUser = Task.Run(async () => await _userService.GetUserAsync(7));
+            var getFailedUser = Task.Run(async() => await _userService.GetUserAsync(23));
 
-            var user = await _userService.GetUserAsync(7);
+            var getSource = Task.Run(async () => await _resourseService.GetResourceAsync(2));
+            var getSources = Task.Run(async () => await _resourseService.GetListResourcesAsync());
+            var getFailedSource = Task.Run(async () => await _resourseService.GetResourceAsync(23));
 
-            user = await _userService.GetUserAsync(23);
+            var CreateEmployee = Task.Run(async () => await _userService.CreateEmployeeAsync("morpheus", "leader"));
+            var updateEmployeePut = Task.Run(async () => await _userService.UpdateEmployeeAsync(2, "morpheus", "zion resident"));
+            var modifyEmployeePath = Task.Run(async () => await _userService.ModifyEmployeeAsync(2, "morpheus", "zion resident"));
+            var deleteEmployee = Task.Run(async () => await _userService.DeleteEmployee(2));
 
-            var source = await _resourseService.GetResourceAsync(2);
+            var register = Task.Run(async () => await _authenticationService.RegisterAsync("eve.holt@reqres.in", "pistol"));
+            var registerFailed = Task.Run(async () => await _authenticationService.RegisterAsync("sydney@fife", null!));
+            var login = Task.Run(async () => await _authenticationService.LoginAsync("eve.holt@reqres.in", "cityslicka"));
+            var loginFailed = Task.Run(async () => await _authenticationService.LoginAsync("peter@klaven", null!));
 
-            var sources = await _resourseService.GetListResourcesAsync();
+            var delaylist = Task.Run(async () => await _userService.GetDelaiesUsersAsync(3));
 
-            source = await _resourseService.GetResourceAsync(23);
+            var getUsers1 = await getUsers;
+            var getUser1 = await getUser;
+            var getFailedUser1 = await getFailedUser;
 
-            var createUser = await _userService.CreateEmployeeAsync("morpheus", "leader");
+            var getSource1 = await getSource;
+            var getSources1 = await getSources;
+            var getFailedSource1 = await getFailedSource;
 
-            var updateUser = await _userService.UpdateEmployeeAsync(createUser.Id, "morpheus", "zion resident");
+            var CreateEmployee1 = await CreateEmployee;
+            var updateEmployeePut1 = await updateEmployeePut;
+            var modifyEmployeePath1 = await modifyEmployeePath;
+            var deleteEmployee1 = await deleteEmployee;
 
-            var updatePath = await _userService.ModifyEmployeeAsync(createUser.Id, "morpheus", "zion resident");
+            var register1 = await register;
+            var registerFailed1 = await registerFailed;
+            var login1 = await login;
+            var loginFailed1 = await loginFailed;
 
-            var deleteEmployee = await _userService.DeleteEmployee(createUser.Id);
-
-            //var register = await _userService.RegisterationAsync("eve.holt@reqres.in", "pistol");
-
-            //register = await _userService.RegisterationAsync("sydney@fife");
-
-            //var login = await _userService.LoginAsync("eve.holt@reqres.in", "cityslicka");
-
-            //login = await _userService.LoginAsync("peter@klaven");
-
-            //var delaylist = await _userService.GetDelayAsync(3);
+            var delaylist1 = await delaylist;
         }
     }
 }
