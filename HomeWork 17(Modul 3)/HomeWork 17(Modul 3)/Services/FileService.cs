@@ -10,7 +10,6 @@ internal class FileService : IFileService
     {
         _file = new Files();
         _file.FullPuth = $"{_file.Path}{_file.NameFile}.txt";
-        _file.StreamWriter = new StreamWriter(_file.FullPuth);
     }
 
     public async Task<int> WriteToFileAsync(string messageText, int countMessageLimit)
@@ -21,21 +20,30 @@ internal class FileService : IFileService
         {
             if (_file.Counter >= countMessageLimit)
             {
+                using (_file.StreamWriter = new StreamWriter(_file.FullPuth, true))
+                {
+                    await _file.StreamWriter.WriteAsync($"{messageText}");
+                }
+
                 _file.NameFile = DateTime.UtcNow.ToString("MM/dd/yyyy hh.mm.ss.ffftt");
                 _file.FullPuth = $"{_file.Path}{_file.NameFile}.txt";
-                _file.StreamWriter = new StreamWriter(_file.FullPuth);
-                _file.Counter = 0;
+                _file.Counter = 1;
             }
+            else
+            {
+                using (_file.StreamWriter = new StreamWriter(_file.FullPuth, true))
+                {
+                    await _file.StreamWriter.WriteLineAsync($"{messageText}");
+                }
 
-            await _file.StreamWriter.WriteLineAsync(messageText);
-            await _file.StreamWriter.FlushAsync();
-
-            _file.Counter++;
+                _file.Counter++;
+            }            
         }
         finally
         {
             _file.SemaphoreSlim.Release();
         }
+
         return _file.Counter;
     }
 }

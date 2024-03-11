@@ -11,7 +11,7 @@ internal class LoggerService : ILoggerService
 {
     private readonly LoggerOption _loggerOption;
     private readonly IFileService _textService;
-
+    
     public event LoggerHandle LoggerHandle;
 
     public LoggerService(IOptions<LoggerOption> loggerOptions, IFileService textService)
