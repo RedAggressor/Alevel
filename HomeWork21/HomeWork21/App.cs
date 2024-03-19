@@ -15,11 +15,6 @@ namespace HomeWork21
         public async Task StartUpAsync()
         {
             var data = await _dbContext.Pets.ToListAsync();
-            foreach (var location in data) 
-            {
-                Console.WriteLine(location.Id + " " + location.Name);
-            }
-            
         }
     }
 }

@@ -32,8 +32,6 @@ class Program
         var migrationSection = configuration.GetSection("Migration");
         var isNeedMigration = migrationSection.GetSection("IsNeedMigration");
         
-        //dotnet ef migrations add InitialCreate - p HomeWork21
-
         if (bool.Parse(isNeedMigration.Value!))
         {
             var dbContext = provider.GetService<AplicationDbContext>();
