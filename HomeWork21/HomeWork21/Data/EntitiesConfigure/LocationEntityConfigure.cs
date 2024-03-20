@@ -8,20 +8,12 @@ namespace HomeWork21.Data.EntitiesConfigure
     {
         public void Configure(EntityTypeBuilder<LocationEntity> builder)
         {
-            builder.HasKey(k => k.Id);
-            builder.Property(p=>p.PetId).IsRequired();
+            builder.HasKey(k => k.Id);            
 
             builder
                 .Property(p => p.LocationName)
                 .IsRequired()
-                .HasColumnName("location_name");
-                
-
-            builder
-                .HasOne(o => o.Pet)
-                .WithMany(o => o.LocationName)
-                .HasForeignKey(k => k.PetId)
-                .OnDelete(DeleteBehavior.Cascade); 
+                .HasColumnName("Location_Name");            
         }
     }
 }

@@ -4,11 +4,8 @@
     {
         public int Id { get; set; }
         public string CategoryName { get; set; } = null!;
-
-        public int PetId { get; set; }
-        public PetEntity? Pet { get; set; }
-
-        public int BreedId { get; set; }
-        public BreedEntity? Breed { get; set; }
+               
+        public ICollection<PetEntity> Pet { get; set; } = new List<PetEntity>();
+        public ICollection<BreedEntity> Breed { get; set; } = new List<BreedEntity>();
     }
 }

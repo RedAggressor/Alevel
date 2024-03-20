@@ -3,9 +3,8 @@
     internal class LocationEntity
     {
         public int Id { get; set; }
-        public string? LocationName { get; set; }
+        public string LocationName { get; set; } = null!;
 
-        public int PetId { get; set; }
-        public PetEntity? Pet { get; set; }
+        public ICollection<PetEntity> Pet { get; set; } = new List<PetEntity>();
     }
 }

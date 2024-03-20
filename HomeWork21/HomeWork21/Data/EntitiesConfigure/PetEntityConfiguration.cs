@@ -11,8 +11,29 @@ namespace HomeWork21.Data.EntitiesConfigure
             builder.HasKey(k => k.Id);
             builder.Property(p=>p.Name).IsRequired();
             builder.Property(p => p.Age).IsRequired();
-            builder.Property(p => p.ImageUrl).HasColumnName("image_url");
-            builder.Property(p => p.Description);               
+            builder.Property(p => p.ImageUrl).HasColumnName("Image_Url");
+            builder.Property(p => p.Description);
+            builder.Property(p => p.CategoryId).IsRequired();
+            builder.Property(p => p.BreedId).IsRequired();
+            builder.Property(p => p.LocationId).IsRequired();
+
+            builder
+                .HasOne(o => o.Category)
+                .WithMany(m => m.Pet)
+                .HasForeignKey(o => o.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder
+                .HasOne(o => o.Breed)
+                .WithMany(m => m.Pet)
+                .HasForeignKey(o => o.BreedId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder
+                .HasOne(o => o.Location)
+                .WithMany(m => m.Pet)
+                .HasForeignKey(o => o.LocationId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

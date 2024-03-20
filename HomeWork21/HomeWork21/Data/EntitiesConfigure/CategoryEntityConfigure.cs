@@ -9,21 +9,11 @@ namespace HomeWork21.Data.EntitiesConfigure
         public void Configure(EntityTypeBuilder<CategoryEntity> builder)
         {
             builder.HasKey(k => k.Id);
-            builder.Property(p => p.CategoryName).IsRequired().HasColumnName("category_name");
-            builder.Property(p => p.PetId).IsRequired();
-            builder.Property(p => p.BreedId).IsRequired();
-
             builder
-                .HasOne(o=>o.Pet)
-                .WithMany(m=>m.Category)
-                .HasForeignKey(o => o.PetId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .Property(p => p.CategoryName)
+                .IsRequired()
+                .HasColumnName("Category_Name");
 
-            builder
-                .HasOne(o => o.Breed)
-                .WithMany(m => m.Category)
-                .HasForeignKey(k => k.BreedId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

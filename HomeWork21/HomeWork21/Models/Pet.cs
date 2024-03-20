@@ -4,10 +4,10 @@
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
-        public IEnumerable<Category> Category { get; set; } = null!;
-        public IEnumerable<Breed> Breed { get; set; } = null!;
+        public int CategoryId { get; set; }
+        public int BreedId { get; set; }
         public float Age { get; set; }
-        public IEnumerable<Location> Location { get; set; } = null!;
+        public int LocationId { get; set; }
         public string? ImageUrl { get; set; }
         public string? Discription { get; set; }
 

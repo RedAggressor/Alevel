@@ -8,8 +8,11 @@
         public string? ImageUrl { get; set; }
         public string? Description { get; set; }
 
-        public List<CategoryEntity> Category { get; set; } = new List<CategoryEntity>();
-        public List<BreedEntity> Breed { get; set; } = new List<BreedEntity>();
-        public List<LocationEntity> LocationName { get; set; } = new List<LocationEntity>();
+        public int CategoryId { get; set; }
+        public CategoryEntity? Category { get; set; }
+        public int BreedId { get; set; }
+        public BreedEntity? Breed { get; set; }
+        public int LocationId { get; set; }
+        public LocationEntity? Location { get; set; }
     }
 }

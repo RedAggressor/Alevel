@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeWork21.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    [Migration("20240318034724_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240320095237_initialCre")]
+    partial class initialCre
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,12 +40,12 @@ namespace HomeWork21.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("breed_name");
 
-                    b.Property<int>("PetId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PetId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Breeds");
                 });
@@ -58,22 +58,12 @@ namespace HomeWork21.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"));
 
-                    b.Property<int>("BreedId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("category_name");
-
-                    b.Property<int>("PetId")
-                        .HasColumnType("int");
+                        .HasColumnName("Category_Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BreedId");
-
-                    b.HasIndex("PetId");
 
                     b.ToTable("Categories");
                 });
@@ -89,14 +79,9 @@ namespace HomeWork21.Migrations
                     b.Property<string>("LocationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("location_name");
-
-                    b.Property<int>("PetId")
-                        .HasColumnType("int");
+                        .HasColumnName("Location_Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PetId");
 
                     b.ToTable("Locations");
                 });
@@ -112,12 +97,21 @@ namespace HomeWork21.Migrations
                     b.Property<float>("Age")
                         .HasColumnType("real");
 
+                    b.Property<int>("BreedId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("image_url");
+                        .HasColumnName("Image_Url");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -125,32 +119,57 @@ namespace HomeWork21.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BreedId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("LocationId");
+
                     b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("HomeWork21.Data.Entities.BreedEntity", b =>
                 {
-                    b.HasOne("HomeWork21.Data.Entities.PetEntity", "Pet")
+                    b.HasOne("HomeWork21.Data.Entities.CategoryEntity", "Category")
                         .WithMany("Breed")
-                        .HasForeignKey("PetId")
+                        .HasForeignKey("CategoryId")
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("HomeWork21.Data.Entities.PetEntity", b =>
+                {
+                    b.HasOne("HomeWork21.Data.Entities.BreedEntity", "Breed")
+                        .WithMany("Pet")
+                        .HasForeignKey("BreedId")
+                        .IsRequired();
+
+                    b.HasOne("HomeWork21.Data.Entities.CategoryEntity", "Category")
+                        .WithMany("Pet")
+                        .HasForeignKey("CategoryId")
+                        .IsRequired();
+
+                    b.HasOne("HomeWork21.Data.Entities.LocationEntity", "Location")
+                        .WithMany("Pet")
+                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Breed");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("HomeWork21.Data.Entities.BreedEntity", b =>
+                {
                     b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("HomeWork21.Data.Entities.CategoryEntity", b =>
                 {
-                    b.HasOne("HomeWork21.Data.Entities.BreedEntity", "Breed")
-                        .WithMany("Category")
-                        .HasForeignKey("BreedId")
-                        .IsRequired();
-
-                    b.HasOne("HomeWork21.Data.Entities.PetEntity", "Pet")
-                        .WithMany("Category")
-                        .HasForeignKey("PetId")
-                        .IsRequired();
-
                     b.Navigation("Breed");
 
                     b.Navigation("Pet");
@@ -158,27 +177,7 @@ namespace HomeWork21.Migrations
 
             modelBuilder.Entity("HomeWork21.Data.Entities.LocationEntity", b =>
                 {
-                    b.HasOne("HomeWork21.Data.Entities.PetEntity", "Pet")
-                        .WithMany("LocationName")
-                        .HasForeignKey("PetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Pet");
-                });
-
-            modelBuilder.Entity("HomeWork21.Data.Entities.BreedEntity", b =>
-                {
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("HomeWork21.Data.Entities.PetEntity", b =>
-                {
-                    b.Navigation("Breed");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("LocationName");
                 });
 #pragma warning restore 612, 618
         }
