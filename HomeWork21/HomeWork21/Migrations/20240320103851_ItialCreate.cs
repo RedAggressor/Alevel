@@ -5,7 +5,7 @@
 namespace HomeWork21.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCre : Migration
+    public partial class ItialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

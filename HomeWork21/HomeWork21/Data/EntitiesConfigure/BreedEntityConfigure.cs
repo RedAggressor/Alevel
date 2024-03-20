@@ -23,7 +23,7 @@ namespace HomeWork21.Data.EntitiesConfigure
                 .HasOne(o => o.Category)
                 .WithMany(m => m.Breed)
                 .HasForeignKey(o => o.CategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
