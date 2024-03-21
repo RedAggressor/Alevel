@@ -3,6 +3,7 @@ using HomeWork21.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeWork21.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    partial class AplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240321040818_ColumName")]
+    partial class ColumName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +38,7 @@ namespace HomeWork21.Migrations
                     b.Property<string>("BreedName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Breed_Name");
+                        .HasColumnName("Breed_name");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int")

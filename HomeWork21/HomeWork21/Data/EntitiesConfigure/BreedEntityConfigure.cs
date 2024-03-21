@@ -13,11 +13,12 @@ namespace HomeWork21.Data.EntitiesConfigure
             builder
                 .Property(p => p.BreedName)
                 .IsRequired()
-                .HasColumnName("breed_name");
+                .HasColumnName("Breed_Name");
 
             builder
                 .Property(p => p.CategoryId)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("Category_Id");
 
             builder
                 .HasOne(o => o.Category)

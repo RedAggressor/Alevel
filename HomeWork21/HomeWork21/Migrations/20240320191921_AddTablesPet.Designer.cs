@@ -3,6 +3,7 @@ using HomeWork21.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeWork21.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    partial class AplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240320191921_AddTablesPet")]
+    partial class AddTablesPet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,11 +38,10 @@ namespace HomeWork21.Migrations
                     b.Property<string>("BreedName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Breed_Name");
+                        .HasColumnName("breed_name");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int")
-                        .HasColumnName("Category_Id");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -96,12 +98,10 @@ namespace HomeWork21.Migrations
                         .HasColumnType("real");
 
                     b.Property<int>("BreedId")
-                        .HasColumnType("int")
-                        .HasColumnName("Breed_Id");
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int")
-                        .HasColumnName("Category_Id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -111,8 +111,7 @@ namespace HomeWork21.Migrations
                         .HasColumnName("Image_Url");
 
                     b.Property<int>("LocationId")
-                        .HasColumnType("int")
-                        .HasColumnName("Location_Id");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
