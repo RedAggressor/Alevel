@@ -7,5 +7,7 @@ namespace HomeWork22.Services.Abstracts
         public Task<int> AddOrderAsync(int costumerId, List<OrderItem> orderItems);
         public Task<Order> GetOrderAsync(int id);
         public Task<IReadOnlyCollection<Order>> GetOrderByCostumerId(int id);
+        public Task DeleteOrderAsync(int id);
+        public Task<int> UpdateOrderAsync(int id, List<OrderItem> items);
     }
 }

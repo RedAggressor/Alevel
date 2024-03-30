@@ -21,6 +21,7 @@ namespace HomeWork22.Datas
             modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
             modelBuilder.ApplyConfiguration(new OrderItemEntityConguration());
             modelBuilder.ApplyConfiguration(new ProductEntityConfiguration());
+            modelBuilder.UseHiLo();
         }
     }
 }

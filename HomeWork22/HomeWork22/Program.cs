@@ -1,4 +1,6 @@
 ﻿using HomeWork22.Datas;
+using HomeWork22.DbWrappers;
+using HomeWork22.DbWrappers.Abstracts;
 using HomeWork22.Repositories;
 using HomeWork22.Repositories.Abstractions;
 using HomeWork22.Services;
@@ -21,10 +23,10 @@ namespace HomeWork22
                     .AddDbContextFactory<ApplicatDbContext>(option =>
                     option
                     .UseSqlServer(connectionString));
-                // serviceColection.addwraper
-
+                
                 serviceCollection
                     .AddLogging(login => login.AddConsole())
+                    .AddScoped<IDbContextWrapper<ApplicatDbContext>, DbContextWrapper<ApplicatDbContext>>()
                     .AddTransient<ICostumerRepository, CostumerRepository>()
                     .AddTransient<ICostumerService, CostumerService>()
                     .AddTransient<IOrderRepository, OrderRepository>()

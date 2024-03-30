@@ -6,5 +6,10 @@ namespace HomeWork22.Services.Abstracts
     {
         public Task<int> AddCostumerAsync(string lastname, string firstname);
         public Task<Costumer> GetCostumerAsync(int id);
+        public Task<Costumer> UpdateCostumerAsync(
+            int id,
+            string lastname = null!,
+            string firstname = null!);
+        public Task DeleteCostumerAsync(int id);
     }
 }
