@@ -38,20 +38,28 @@ namespace HomeWork22.Services
 
         public async Task<Costumer> UpdateCostumerAsync(int id, string lastname = null!, string firstname = null!)
         {
-            var costumers = await _costumerRepository.UpdateCostumerAsync(id, lastname);
-
-            return new Costumer()
+            return await ExecuteSafeAsync(async () =>
             {
-                Id = costumers.Id,
-                Lastname = costumers.LastName,
-                Firstname = costumers.FirstName,
-                Fullname = $"{costumers.LastName} {costumers.FirstName}"
-            };
+                var costumers = await _costumerRepository.UpdateCostumerAsync(id, lastname);
+
+                return new Costumer()
+                {
+                    Id = costumers.Id,
+                    Lastname = costumers.LastName,
+                    Firstname = costumers.FirstName,
+                    Fullname = $"{costumers.LastName} {costumers.FirstName}"
+                };
+            });
         }
 
-        public async Task DeleteCostumerAsync(int id)
+        public async Task<string> DeleteCostumerAsync(int id)
         {
-            await _costumerRepository.DeleteCostumerAsync(id);
+            return await ExecuteSafeAsync(async () =>
+            {
+                var status = await _costumerRepository.DeleteCostumerAsync(id);
+
+                return status;
+            });
         }
 
         public async Task<Costumer> GetCostumerAsync(int id)

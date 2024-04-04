@@ -27,97 +27,143 @@ namespace HomeWork22.Services
 
         public async Task<int> AddOrderAsync(int costumerId, List<OrderItem> orderItems)
         {
-            var id = await _orderRepository.AddOrderAsync(costumerId, orderItems);
+            return await ExecuteSafeAsync(async () =>
+            {
+                var id = await _orderRepository.AddOrderAsync(costumerId, orderItems);
 
-            _logger.LogInformation($"Order seccusfull created with id {id}");
+                _logger.LogInformation($"Order seccusfull created with id {id}");
 
-            return id;
+                return id;
+            });
 
         }
 
         public async Task<Order> GetOrderAsync(int id)
         {
-            var order = await _orderRepository.GetOrder(id);
-
-            if (order is null)
+            return await ExecuteSafeAsync(async() =>
             {
-                _logger.LogWarning($"Order don`t finded with id {id}");
+                var order = await _orderRepository.GetOrder(id);
 
-                return null!;
-            }
+                if (order is null)
+                {
+                    _logger.LogWarning($"Order don`t finded with id {id}");
 
-            return new Order()
+                    return null!;
+                }
+
+                return new Order()
+                {
+                    Id = order.Id,
+
+                    OrderItem = order.OrderItems.Select(s => new OrderItem()
+                    {
+                        Count = s.Count,
+                        ProductId = s.ProductId,
+
+                        Product = new Product()
+                        {
+                            Id = s.Product.Id,
+                            Name = s.Product.Name,
+                            Price = s.Product.Price,
+                        }
+                    })
+                };
+            });
+        }
+
+        public async Task<string> DeleteOrderAsync(int id)
+        {
+            return await ExecuteSafeAsync(async () =>
             {
-                Id = order.Id,
+                var status = await _orderRepository.DeleteOrderAsync(id);
 
-                OrderItem = order.OrderItems.Select(s => new OrderItem()
+                if (status is null)
+                {
+                    _logger.LogWarning($"Order don`t finded with id {id}");
+
+                    return null!;
+                }
+
+                _logger.LogInformation($"Order {id} is seccusfull delete");
+                return status;
+            });
+        }
+
+        public async Task<Order> UpdateOrderAsync(int id, List<OrderItem> items)
+        {
+            return await ExecuteSafeAsync(async () =>
+            {
+                var entity = items.Select(s => new OrderItemEntity()
                 {
                     Count = s.Count,
                     ProductId = s.ProductId,
-
-                    Product = new Product()
+                    Product = new ProductEntity()
                     {
                         Id = s.Product.Id,
                         Name = s.Product.Name,
                         Price = s.Product.Price,
                     }
-                })
-            };
-        }
+                }).ToList();
 
-        public async Task DeleteOrderAsync(int id)
-        {
-            await _orderRepository.DeleteOrderAsync(id);
-            _logger.LogInformation($"Order {id} is seccusfull delete");
-        }
-
-        public async Task<int> UpdateOrderAsync(int id, List<OrderItem> items)
-        {
-            var entity = items.Select(s => new OrderItemEntity()
-            {
-                Count = s.Count,
-                ProductId = s.ProductId,
-                Product = new ProductEntity()
+                var order = await _orderRepository.UpDataOrderAsync(id, entity);
+                if (order is null)
                 {
-                    Id = s.Product.Id,
-                    Name = s.Product.Name,
-                    Price = s.Product.Price,
+                    _logger.LogWarning($"Order don`t finded with id {id}");
+
+                    return null!;
                 }
-            }).ToList();
 
-            var idOrder = await _orderRepository.UpDataOrderAsync(id, entity);
+                _logger.LogInformation($"Update succesfull {order.Id}");
 
-            _logger.LogInformation($"Update succesfull {idOrder}");
-
-            return idOrder;
+                return new Order()
+                {
+                    Id = order.Id,
+                    Costumer = new Costumer()
+                    {
+                        Id = order.Costumer.Id,
+                        Firstname = order.Costumer.FirstName,
+                        Lastname = order.Costumer.LastName,
+                        Fullname = $"{order.Costumer.FirstName} {order.Costumer.LastName}"
+                    },
+                    OrderItem = new List<OrderItem>().Select(s => new OrderItem()
+                    {
+                        Count = s.Count,
+                        Product = s.Product,
+                        ProductId = s.ProductId
+                    }),
+                };
+            });
         }
 
         public async Task<IReadOnlyCollection<Order>> GetOrderByCostumerId(int id)
         {
-            var order = await _orderRepository.GetOrderByCostumerId(id);
-
-            if (order is null)
+            return await ExecuteSafeAsync(async () =>
             {
-                _logger.LogWarning($"Order not founded with id {id}");
+                var order = await _orderRepository.GetOrderByCostumerId(id);
 
-                return null!;
-            }
-
-            return order.Select(s => new Order()
-            {
-                Id = s.Id,
-                OrderItem = s.OrderItems.Select(r => new OrderItem()
+                if (order is null)
                 {
-                    Count = r.Count,
-                    ProductId = r.ProductId,
-                    Product = new Product()
+                    _logger.LogWarning($"Order not founded with id {id}");
+
+                    return null!;
+                }
+
+                return order.Select(s => new Order()
+                {
+                    Id = s.Id,
+                    OrderItem = s.OrderItems.Select(r => new OrderItem()
                     {
-                        Id = r.Product.Id,
-                        Name = r.Product.Name,
-                        Price = r.Product.Price,
-                    }
-                })
-            }).ToList();
+                        Count = r.Count,
+                        ProductId = r.ProductId,
+                        Product = new Product()
+                        {
+                            Id = r.Product.Id,
+                            Name = r.Product.Name,
+                            Price = r.Product.Price,
+                        }
+                    })
+                }).ToList();
+            });
         }
     }
 }

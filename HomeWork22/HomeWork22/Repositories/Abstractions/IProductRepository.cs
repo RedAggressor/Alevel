@@ -7,7 +7,7 @@ namespace HomeWork22.Repositories.Abstractions
     {
         public Task<int> AddProductAsync(string name, double price);
         public Task<ProductEntity> GetProductAsync(int id);
-        public Task DeleteProductAsync(int id);
+        public Task<string> DeleteProductAsync(int id);
         public Task<ProductEntity> UpdataProductAsync(
             int id,
             string name = null!, 

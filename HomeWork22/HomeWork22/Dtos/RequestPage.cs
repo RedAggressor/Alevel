@@ -1,6 +1,4 @@
-﻿using Microsoft.Identity.Client;
-
-namespace HomeWork22.Dtos
+﻿namespace HomeWork22.Dtos
 {
     internal class RequestPage : PageDto
     {

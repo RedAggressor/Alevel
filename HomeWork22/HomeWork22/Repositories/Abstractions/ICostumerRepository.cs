@@ -10,6 +10,6 @@ namespace HomeWork22.Repositories.Abstractions
             int id,
             string lastname = null!,
             string firstname = null!);
-        public Task DeleteCostumerAsync(int id);
+        public Task<string> DeleteCostumerAsync(int id);
     }
 }

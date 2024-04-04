@@ -39,24 +39,30 @@ namespace HomeWork22.Repositories
             return order.Entity.Id;
         }
 
-        public async Task<int> UpDataOrderAsync(int id, List<OrderItemEntity> orderItem)
+        public async Task<OrderEntity> UpDataOrderAsync(int id, List<OrderItemEntity> orderItem)
         {
             var orderUp = await GetOrder(id);
-
+            
             orderUp.OrderItems = orderItem;
 
             await _dbContext.SaveChangesAsync();
 
-            return id;
+            return orderUp;
         }
 
-        public async Task DeleteOrderAsync(int id)
+        public async Task<string> DeleteOrderAsync(int id)
         {
             var order = await GetOrder(id);
 
-            _dbContext.Orders.Remove(order);
+            if (order is null)
+            {
+                return null;
+            }
+
+            var status = _dbContext.Orders.Remove(order);
 
             await _dbContext.SaveChangesAsync();
+            return status.ToString();
         }
 
         public async Task<OrderEntity?> GetOrder(int id)

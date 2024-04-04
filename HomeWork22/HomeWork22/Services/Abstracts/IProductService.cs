@@ -7,8 +7,8 @@ namespace HomeWork22.Services.Abstracts
     {
         public Task<int> AddProductAsync(string name, double price);
         public Task<Product> GetProductAsync(int id);
-        public Task<int> UpdataProductAsync(int id, string name = null!, double price = 0);
-        public Task DeleteProduct(int id);
+        public Task<Product> UpdataProductAsync(int id, string name = null!, double price = 0);
+        public Task<string> DeleteProduct(int id);
         public Task<IEnumerable<Product>> GetViewProductListAsync(RequestPage request);
     }
 }

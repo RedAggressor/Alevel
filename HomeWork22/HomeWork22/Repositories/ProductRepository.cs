@@ -15,7 +15,6 @@ namespace HomeWork22.Repositories
         { 
             _dbContext = dbContextWrapper.DbContext;
         }
-
         public async Task<int> AddProductAsync(string name, double price)
         {
             var product = new ProductEntity()
@@ -42,12 +41,17 @@ namespace HomeWork22.Repositories
             return product;
         }
 
-        public async Task DeleteProductAsync(int id)
+        public async Task<string> DeleteProductAsync(int id)
         {
             var product = await GetProductAsync(id);
-
-            _dbContext.Products.Remove(product!);
+            if (product is null)
+            {
+                return null!;
+            }
+             var status = _dbContext.Products.Remove(product!);
             _dbContext.SaveChanges();
+
+            return status.ToString();
         }
 
         public async Task<ProductEntity?> GetProductAsync(int id)
@@ -58,13 +62,12 @@ namespace HomeWork22.Repositories
 
         public async Task<IEnumerable<ProductEntity>> GetProductListAsync(RequestPage request)
         {
-            return await _dbContext.Products
-               .Where(x => x.Price >= request.PriceMin && x.Price <= request.PriceMax)
-               .Where(x => x.Name == request.Name)
+            return _dbContext.Products.AsEnumerable()
+               .Where(x => x.Price == request.PriceMax || x.Name.Contains(request.Name))
                .Skip(request.PageSize * (request.PageNamber - 1))
                .Take(request.PageSize)
-               .OrderDescending()
-               .ToListAsync();
+               .OrderByDescending(x=>x.Name)
+               .ToList();
         }
     }
 }

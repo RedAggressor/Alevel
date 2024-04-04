@@ -21,7 +21,7 @@ namespace HomeWork22.Services
             (dbContextWrapper, logger)
         {
             _productRepository = productRepository;
-            _logger = loggerService;        
+            _logger = loggerService;
         }
 
         public async Task<int> AddProductAsync(string name, double price)
@@ -38,14 +38,55 @@ namespace HomeWork22.Services
 
         public async Task<Product> GetProductAsync(int id)
         {
-            var product = await _productRepository.GetProductAsync(id);
+            return await ExecuteSafeAsync(async () =>
+            {
+                var product = await _productRepository.GetProductAsync(id);
 
+                if (product is null)
+                {
+                    _logger.LogWarning("Product with this id don`t exist");
+
+                    return null!;
+                }
+
+                return new Product()
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Price = product.Price,
+                };
+            });
+        }
+
+        public async Task<string> DeleteProduct(int id)
+        {
+            return await ExecuteSafeAsync(async () =>
+            {
+                var status = await _productRepository.DeleteProductAsync(id);
+
+                if (status is null)
+                {
+                    _logger.LogWarning($"product don`t finded with id {id}");
+
+                    return null!;
+                }
+                _logger.LogInformation($"Product seccesfull deleted: {id}");
+
+                return status;
+            });
+        }
+
+        public async Task<Product> UpdataProductAsync(int id, string name = null!, double price = 0)
+        {
+            var product = await _productRepository.UpdataProductAsync(id, name, price);
             if (product is null)
             {
                 _logger.LogWarning("Product with this id don`t exist");
 
                 return null!;
             }
+
+            _logger.LogInformation($"Product with id: {id} seccusfull update");
 
             return new Product()
             {
@@ -55,33 +96,27 @@ namespace HomeWork22.Services
             };
         }
 
-        public async Task DeleteProduct(int id)
-        { 
-            await _productRepository.DeleteProductAsync(id);
-
-            _logger.LogInformation($"Product seccesfull deleted: {id}");
-        }
-
-        public async Task<int> UpdataProductAsync(int id, string name = null!, double price = 0)
-        {
-            await _productRepository.UpdataProductAsync(id, name, price);
-
-            _logger.LogInformation($"Product with id: {id} seccusfull update");
-
-            return id;
-        }
-
         public async Task<IEnumerable<Product>> GetViewProductListAsync(RequestPage request)
         {
-            var product = await _productRepository.GetProductListAsync(request);
+            return await ExecuteSafeAsync(async () =>
+            {
+                var product = await _productRepository.GetProductListAsync(request);
 
-            return product.Select(x => new Product()
+                if (product is null)
+                {
+                    _logger.LogWarning("Product with this id don`t exist");
+
+                    return null!;
+                }
+
+                return product.Select(x => new Product()
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Price = x.Price,                    
+                    Price = x.Price,
 
                 }).ToList();
+            });
         }
     }
 }

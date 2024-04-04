@@ -35,6 +35,11 @@ namespace HomeWork22.Repositories
         {
             var costumer = await GetCostumerAsync(id);
 
+            if (costumer is null)
+            {
+                return null;
+            }
+
             costumer.LastName = lastname is null ? costumer.LastName : lastname;
 
             costumer.FirstName = firstname is null ? costumer.FirstName : firstname;
@@ -44,13 +49,19 @@ namespace HomeWork22.Repositories
             return costumer;
         }
 
-        public async Task DeleteCostumerAsync(int id)
+        public async Task<string> DeleteCostumerAsync(int id)
         {
             var costumer = await GetCostumerAsync(id);
 
-            _dbContext.Costumers.Remove(costumer);
+            if(costumer is null)
+            {
+                return null;
+            }
 
+            var status = _dbContext.Costumers.Remove(costumer);
             await _dbContext.SaveChangesAsync();
+
+            return status.ToString();
         }
 
         public async Task<CostumerEntity> GetCostumerAsync(int id)

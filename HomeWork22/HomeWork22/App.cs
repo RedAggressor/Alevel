@@ -27,7 +27,7 @@ namespace HomeWork22
 
             var idOrange = await _productService.AddProductAsync("Orange", 10.50);
 
-            await _productService.UpdataProductAsync(idLimon, price: 11);
+            await _productService.UpdataProductAsync(idOrange, name: "Limon", price: 11);
 
             var productLimon = await _productService.GetProductAsync(idLimon);
 
@@ -55,7 +55,7 @@ namespace HomeWork22
 
             var request = new RequestPage()
             {
-                Name = "",
+                Name = "Limon",
                 PageNamber = 1,
                 PageSize = 20,
                 PriceMax = 10,
