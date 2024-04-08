@@ -16,7 +16,7 @@ namespace HomeWork22.Repositories
             _dbContext = dbContextWrapper.DbContext;
         }
 
-        public async Task<int> AddOrderAsync(int id, List<OrderItem> orderItemList)
+        public async Task<int> AddOrderAsync(int id, List<OrderItemEntity> orderItemList)
         {
             var order = await _dbContext.Orders
                 .AddAsync(new OrderEntity()

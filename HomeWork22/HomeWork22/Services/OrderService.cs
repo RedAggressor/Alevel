@@ -29,7 +29,23 @@ namespace HomeWork22.Services
         {
             return await ExecuteSafeAsync(async () =>
             {
-                var id = await _orderRepository.AddOrderAsync(costumerId, orderItems);
+                var orderItemEntity = new List<OrderItemEntity>();
+
+                orderItems.ForEach(s =>
+                    orderItemEntity.Add(new OrderItemEntity()
+                    {
+                        ProductId = s.ProductId,
+                        Count = s.Count,
+                        Product = new ProductEntity()
+                        {
+                            Id = s.Product.Id,
+                            Price = s.Product.Price,
+                            Name = s.Product.Name,
+                            OrderItems = orderItemEntity
+                        }
+                    }));
+
+                var id = await _orderRepository.AddOrderAsync(costumerId, orderItemEntity);
 
                 _logger.LogInformation($"Order seccusfull created with id {id}");
 
@@ -40,7 +56,7 @@ namespace HomeWork22.Services
 
         public async Task<Order> GetOrderAsync(int id)
         {
-            return await ExecuteSafeAsync(async() =>
+            return await ExecuteSafeAsync(async () =>
             {
                 var order = await _orderRepository.GetOrder(id);
 
