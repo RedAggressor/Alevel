@@ -1,0 +1,51 @@
+p
+{
+    color: green;
+}
+table
+{
+    color:aqua;
+    background-image: url("coffee.jpg");
+    text-align: center;
+    width: 50%;    
+}
+th, td
+{
+    border-bottom: 2px solid red;
+    padding: 5px;
+}
+tr:hover
+{
+    background-color: rgb(168, 47, 255);
+}
+a
+{
+    transition: all 1s;
+}
+a:hover
+{   
+    color: aquamarine;    
+}
+.listtable
+{
+    overflow-x: auto;
+}
+a[target=_self]:hover
+{
+    color: chartreuse;
+}
+.images img
+{
+    display: block;
+    position: sticky;
+    top: 0px;
+    padding: 30px;
+}
+a[href^="#start"]
+{
+    display: block;     
+    background-color: blue;
+    text-align: center;
+    width: 10%;
+    clear: none;
+}
