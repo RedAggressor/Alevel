@@ -1,17 +1,15 @@
 import React, {ReactElement, FC, useEffect, useState} from "react";
-import {
-    Box,
+import {   
     Card,
     CardContent,
     CardMedia,
     CircularProgress,
     Container,
-    Grid,
-    Pagination,
+    Grid,   
     Typography
 } from '@mui/material'
 import * as userApi from "../../api/moduls/user";
-import { IUserResponse } from "../../interfaces/userResponse";
+import { IUserResponse } from "../../api/response/userResponse";
 import {useParams} from "react-router-dom";
 
 const User: FC<any> = (): ReactElement => {
@@ -54,7 +52,7 @@ const User: FC<any> = (): ReactElement => {
                         />
                         <CardContent>
                             <Typography noWrap gutterBottom variant="h6" component='div'>
-                                {user?.first_name} {user?.last_name}
+                                {user?.first_name} {user?.last_name} {user?.job}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                                 {user?.email}

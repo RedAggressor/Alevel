@@ -9,7 +9,7 @@ import {
     Typography
 } from '@mui/material'
 import * as resourseApi from "../../api/moduls/resours";
-import { IResourseResponse } from "../../interfaces/productResponce";
+import { IResourseResponse } from "../../api/response/productResponce";
 import {useParams} from "react-router-dom";
 
 const Resource: FC<any> = (): ReactElement => {

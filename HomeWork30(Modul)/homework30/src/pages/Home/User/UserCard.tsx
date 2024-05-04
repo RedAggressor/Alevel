@@ -1,6 +1,6 @@
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material"
 import {FC, ReactElement} from "react";
-import {IUserResponse} from "../../interfaces/userResponse";
+import {IUserResponse} from "../../../api/response/userResponse";
 import {useNavigate} from "react-router-dom";
 
 const UserCard: FC<IUserResponse> = (props) : ReactElement => {

@@ -3,14 +3,13 @@ import * as authApi from "../api/moduls/authent";
 
 class AuthStore{
     token='';
-    email='';      
-    
+    email='';
+           
     constructor() {
         makeAutoObservable(this);
     }
 
     async login(email: string, password: string) {
-
         const respon = await authApi.login({ email, password });
         this.token = respon.token;
         this.email = email;       

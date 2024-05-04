@@ -1,6 +1,6 @@
 import {Card, CardActionArea, CardContent, Typography, Box} from "@mui/material"
 import {FC, ReactElement} from "react";
-import { IResourseResponse } from "../../interfaces/productResponce";
+import { IResourseResponse } from "../../api/response/productResponce";
 import {useNavigate} from "react-router-dom";
 
 const ProductCard: FC<IResourseResponse> = (props): ReactElement => {

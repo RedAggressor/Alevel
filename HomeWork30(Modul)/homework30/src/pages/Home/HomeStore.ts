@@ -1,5 +1,5 @@
 import { makeAutoObservable, runInAction, } from "mobx";
-import { IUserResponse } from "../../interfaces/userResponse";
+import { IUserResponse } from "../../api/response/userResponse";
 import * as userApi from "../../api/moduls/user";
 
 class HomeStore {
@@ -7,6 +7,9 @@ class HomeStore {
     totalPages = 0;
     currentPage = 1;
     isLoading = false;
+    email = "";
+    password = '';
+
 
     constructor()
     {
@@ -35,4 +38,5 @@ class HomeStore {
         this.isLoading = false;
     };
 }
-    export default HomeStore;
+
+export default HomeStore;

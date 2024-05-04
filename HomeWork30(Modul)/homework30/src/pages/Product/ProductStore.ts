@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import * as resorceApi from "../../api/moduls/resours";
-import { IResourseResponse } from "../../interfaces/productResponce";
+import { IResourseResponse } from "../../api/response/productResponce";
     
 class ProductStore {
     resourse: IResourseResponse[] = [];
