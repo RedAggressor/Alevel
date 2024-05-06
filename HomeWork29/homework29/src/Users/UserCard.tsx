@@ -2,36 +2,32 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Box} from '@mui/material';
+import {CardActionArea} from '@mui/material';
+import { FC, ReactElement } from 'react';
 
-export default function CardUser(props:any)
+const CardUser: FC<any> = (props): ReactElement =>
 {
   return (
-  <Box> 
-    <Card>
+  
+    <Card sx={{ maxWidth: 250 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           image={props.avatar}
-          height='250'
-          width='100'
+          height='250'          
           alt={props.first_name + props.last_name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography noWrap gutterBottom variant="h5" component="div">
             {props.first_name} {props.last_name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography noWrap gutterBottom variant="body2" component="div">
           {props.email}
           </Typography>
         </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          See profile
-        </Button>
-      </CardActions>
-    </Card> 
-    </Box>
+      </CardActionArea>      
+    </Card>     
   );
 }
+
+export default CardUser;

@@ -1,8 +1,9 @@
 import { Box, Container, Grid, Pagination, Color} from '@mui/material';
 import React, { ReactElement, FC, useEffect } from 'react';
-import { IResourse } from '../interfaces/resourse';
-import { IResponse } from '../interfaces/responce';
+import { IResourse } from '../api/responce/resourse';
+import { IResponse } from '../api/responce/responce';
 import ResourseCard from './ResourseCard';
+import * as apiResourse from '../api/resourseApi';
 
 const Resourses: FC<any> = (): ReactElement => {
   const [resours, setResours] = React.useState<IResourse[]>();
@@ -10,14 +11,20 @@ const Resourses: FC<any> = (): ReactElement => {
   const [currentPage, setCurrentPage] = React.useState<number>(1);
     
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(`https://reqres.in/api/unknown?page=${currentPage}`);
-      const responsce : IResponse<IResourse> = await data.json();
-      setTotalPages(responsce.total_pages);
-      setResours(responsce.data);
+    const getResource = async () => {
+      try{
+        const responsce : IResponse<IResourse> = await apiResourse.getResouseByPage(currentPage);       
+        setTotalPages(responsce.total_pages);
+        setResours(responsce.data);
+      }
+      catch (error){
+        if (error instanceof Error) {
+          alert(error.message)
+        }
+      }      
     }
-    fetchData().catch(console.error);
-  });
+    getResource()
+  }, [currentPage]);
 
   return (
     <Container fixed>
