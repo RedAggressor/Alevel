@@ -29,18 +29,14 @@ const Home: FC<any> = (): ReactElement => {
   </Box>
   <TabPanel value="1">
     <Container>
-            <Grid container spacing={3} justifyContent='center' my={4}>
-                {store.isLoading ? (
-                    <CircularProgress/>
-                ): (
+            <Grid container spacing={3} justifyContent='center' my={4}>                
                     <>
                     {store.users?.map((item) => (
                         <Grid key={item.id} item lg={2} md={3} xs={6}>
                             <UserCard {...item} />
                         </Grid>
                     ))}
-                    </>
-                )}
+                    </>                
             </Grid>
             <Box 
                 sx={{

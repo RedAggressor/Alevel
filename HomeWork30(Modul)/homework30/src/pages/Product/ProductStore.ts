@@ -6,7 +6,6 @@ class ProductStore {
     resourse: IResourseResponse[] = [];
     totalPages = 0;
     currentPage = 1;
-    isLoading = false;
 
     constructor()
     {
@@ -20,8 +19,7 @@ class ProductStore {
     }
 
     prefetchData = async () => {
-        try {
-            this.isLoading = true;
+        try {           
             const respon = await resorceApi.getProductByPage(this.currentPage)
             this.resourse = respon.data;
             this.totalPages = respon.total_pages;
@@ -30,9 +28,7 @@ class ProductStore {
             if(error instanceof Error) {
                 console.error(error.message)   
             }
-        }
-
-        this.isLoading = false;
+        }      
     };
 }
 

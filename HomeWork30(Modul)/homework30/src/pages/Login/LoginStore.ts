@@ -7,8 +7,7 @@ class LoginStore {
 
     email = '';
     password = '';
-    error = '';
-    isLoading = false;
+    error = '';    
 
     constructor(authStore: AuthStore) {
         this.authStore = authStore;
@@ -30,8 +29,7 @@ class LoginStore {
     }
 
     async login() {
-        try {
-            this.isLoading = true;
+        try {            
            await this.authStore.login(this.email, this.password);
            
         }
@@ -39,8 +37,7 @@ class LoginStore {
             if (e instanceof Error) {
                 this.error = e.message;                
             }
-        }
-        this.isLoading = false;
+        }       
     };
 }
 

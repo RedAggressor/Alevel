@@ -7,7 +7,6 @@ class HomeStore {
     users: IUserResponse[] = [];
     totalPages = 0;
     currentPage = 1;
-    isLoading = false;
     email = "";
     password = '';
 
@@ -24,7 +23,6 @@ class HomeStore {
 
     prefetchData = async () => {
         try {
-            this.isLoading = true;
             const respon = await userApi.getUserByPage(this.currentPage)
             this.users = respon.data;
             this.totalPages = respon.total_pages;
@@ -34,8 +32,6 @@ class HomeStore {
                 console.error(error.message)   
             }
         }
-
-        this.isLoading = false;
     };
 }
 

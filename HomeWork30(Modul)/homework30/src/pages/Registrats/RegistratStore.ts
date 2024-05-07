@@ -7,8 +7,7 @@ class RegistratStore {
 
     email = '';
     password = '';
-    error = '';
-    isLoading = false;    
+    error = '';  
 
     constructor(authStore: AuthStore) {
         this.authStore = authStore;
@@ -30,8 +29,7 @@ class RegistratStore {
     }
 
     async registrat() {
-        try {
-            this.isLoading = true;
+        try {            
             await this.authStore.login(this.email, this.password);
            
         }
@@ -40,7 +38,6 @@ class RegistratStore {
                 this.error = e.message;
             }
         }
-        this.isLoading = false;
     }
 }
 
