@@ -8,10 +8,10 @@ export interface IUserResponse {
 }
 
 export interface INewUserResponse {
-    'name': string,
-    'job': string,
-    'id': number,
-    'createdAt': string
+    name: string,
+    job: string,
+    id: number,
+    createdAt: string,
 }
 
 export interface IUpdateResponse {

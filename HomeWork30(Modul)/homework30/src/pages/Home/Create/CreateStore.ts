@@ -5,48 +5,39 @@ import { INewUserResponse } from "../../../api/response/userResponse";
 class CreateUserStore{
 
     job = '';
-    name = '';   
-    responce: INewUserResponse = {name: "", job: "", id: 0,  createdAt: ''};
+    name = '';
+    
+    responce: INewUserResponse = {        
+        name: "",
+        job: "",
+        id: 0,
+        createdAt: "",
+    };    
 
     constructor(){
-        makeAutoObservable(this)        
-    }
+        makeAutoObservable(this);              
+    };
 
-    chageJob(email:string){
-        this.job = email;        
-    }
+    chageJob(job:string){
+        this.job = job;        
+    };
 
     changeName(name:string){
-        this.name = name;        
-    }
+        this.name = name; 
+    };    
 
-    async createUser() {
+    createUser = async() => {
         try {            
-            const responce = await apiUser.createUser(this.name, this.job);
-    
-            this.responce = {
-                name: responce.name,
-                job: responce.job,
-                id: responce.id,
-                createdAt: responce.createdAt,
-            }            
+            const responce:INewUserResponse = await apiUser.createUser(this.name, this.job);           
+            this.responce = responce;
+            alert(this.responce.createdAt + "   " + this.responce.id)             
         }
         catch (e) {
             if (e instanceof Error) {
                 alert(e.message)
             }
-        }
-               
-    }
-    
-    showCreateUSer(){
-        alert(
-        `    Create user info
-        id:${this.responce.id}
-        name: ${this.responce.name}
-        job: ${this.responce.job}
-        createAt: ${this.responce.createdAt}`)
-    }
+        }               
+    };
 }    
 
 export default CreateUserStore;

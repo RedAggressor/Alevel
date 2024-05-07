@@ -1,10 +1,10 @@
-import {useContext} from 'react'
+import {FC, ReactElement, useContext} from 'react'
 import {Box, Button, CircularProgress, TextField, Typography} from '@mui/material'
 import RegistratStore from './RegistratStore';
 import {AppStoreContext} from "../../App";
 import {observer} from "mobx-react-lite";
 
-const Registart = () => {
+const Registart:FC<any> = (): ReactElement => {
     const appStore = useContext(AppStoreContext);
     const store = new RegistratStore(appStore.authStore);
 
@@ -29,20 +29,18 @@ const Registart = () => {
                      alert(`registartion succesfull your token: ${appStore.authStore.token}`)
                      :
                      alert(store.error);
-                }}
+                }}                
                  >
                 <TextField
                     type="email"
                     margin="normal"
                     required
-                    fullWidth
-                    id="email"
+                    fullWidth                    
                     label="Email Address"
-                    name="email"
-                    autoComplete="email"
+                    name="email"                   
                     onChange={(event) => 
                         store.changeEmail(event.target.value)}
-                    autoFocus
+                    
                 />
                 <TextField                    
                     margin="normal"
@@ -50,27 +48,16 @@ const Registart = () => {
                     fullWidth
                     name="password"
                     label="Password"
-                    type="password"
-                    id="password"
+                    type="password"                   
                     onChange={(event) =>
-                         store.changePassword(event.target.value)}
-                    autoComplete="current-password"
-                />
-                {!!store.error && (
-                    <p style={{ color: 'red', fontSize: 14 }}>{store.error}</p>
-                )}
+                        store.changePassword(event.target.value)}                  
+                />                
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                >
-                    {store.isLoading ? (
-                        <CircularProgress />
-                    ) : (
-                        'Submit'
-                    )}
-                </Button>                
+                > Submit </Button>                        
             </Box>
         </Box>
     )

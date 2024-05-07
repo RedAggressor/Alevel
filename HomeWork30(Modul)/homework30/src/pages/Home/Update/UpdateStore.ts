@@ -41,16 +41,7 @@ class UpdateStore{
                 alert(e.message)
             }
         }               
-    }
-    
-    showUpdateUser(){
-        alert(
-        `    update user info        
-        name: ${this.responce.name}
-        job: ${this.responce.job}
-        updatedAt: ${this.responce.updatedAt}
-        `)
-    }
+    }    
 }    
 
 export default UpdateStore;

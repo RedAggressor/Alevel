@@ -9,9 +9,12 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 
+
 const Acount: FC<any> = (): ReactElement => {
 
   const appStore = useContext(AppStoreContext);
+
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);

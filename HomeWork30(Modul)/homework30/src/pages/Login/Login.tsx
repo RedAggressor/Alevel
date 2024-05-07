@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {FC, ReactElement, useContext} from 'react'
 import {Box, Button, CircularProgress, TextField, Typography} from '@mui/material'
 import LoginStore from "./LoginStore";
 import {AppStoreContext} from "../../App";
@@ -34,13 +34,11 @@ const Login = () => {
                 <TextField
                     margin="normal"
                     required
-                    fullWidth
-                    id="email"
+                    fullWidth                    
                     label="Email Address"
                     name="email"
                     autoComplete="email"
-                    onChange={(event) => store.changeEmail(event.target.value)}
-                    autoFocus
+                    onChange={(event) => store.changeEmail(event.target.value)}                    
                 />
                 <TextField
                     margin="normal"
@@ -48,24 +46,15 @@ const Login = () => {
                     fullWidth
                     name="password"
                     label="Password"
-                    type="password"
-                    id="password"
-                    onChange={(event) => store.changePassword(event.target.value)}
-                    autoComplete="current-password"
-                />
-                {!!store.error && (
-                    <p style={{ color: 'red' }}>{store.error}</p>
-                )}
+                    type="password"                    
+                    onChange={(event) => store.changePassword(event.target.value)}                    
+                />                 
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
-                >
-                    {store.isLoading ? (
-                        <CircularProgress />
-                    ) : ('Submit')}                   
-                </Button>
+                >Submit</Button>               
             </Box>
         </Box>
     )

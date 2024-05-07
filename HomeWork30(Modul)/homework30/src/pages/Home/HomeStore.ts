@@ -3,13 +3,13 @@ import { IUserResponse } from "../../api/response/userResponse";
 import * as userApi from "../../api/moduls/user";
 
 class HomeStore {
+    
     users: IUserResponse[] = [];
     totalPages = 0;
     currentPage = 1;
     isLoading = false;
     email = "";
     password = '';
-
 
     constructor()
     {

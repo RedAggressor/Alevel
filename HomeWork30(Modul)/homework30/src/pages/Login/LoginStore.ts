@@ -32,17 +32,16 @@ class LoginStore {
     async login() {
         try {
             this.isLoading = true;
-           const responce = await this.authStore.login(this.email, this.password);
+           await this.authStore.login(this.email, this.password);
            
         }
         catch (e) {
             if (e instanceof Error) {
-                this.error = e.message;
-                
+                this.error = e.message;                
             }
         }
         this.isLoading = false;
-    }
+    };
 }
 
 export default LoginStore;
