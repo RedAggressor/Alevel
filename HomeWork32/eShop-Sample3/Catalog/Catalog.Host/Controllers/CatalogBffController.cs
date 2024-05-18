@@ -35,24 +35,27 @@ public class CatalogBffController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet]    
-    public async Task<CatalogItemDto> GetById(int id)
+    [HttpPost]
+    [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetById(int id)
     {
         var result = await _catalogItemService.GetCatalogItemsByIdAsync(id);
-        return result;
+        return Ok(result);
     }
 
-    [HttpGet]    
-    public async Task<IEnumerable<CatalogItemDto>> GetByBrand(int idBrand)
+    [HttpPost]
+    [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetByBrand(int idBrand)
     {
         var result = await _catalogItemService.GetCatalogItemByBrandAsync(idBrand);
-        return result;
+        return Ok(result);
     }
 
-    [HttpGet]    
-    public async Task<IEnumerable<CatalogItemDto>> GetByType(int idType)
+    [HttpPost]
+    [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetByType(int idType)
     {
         var result = await _catalogItemService.GetCatalogItemByTypeAsync(idType);
-        return result;
+        return Ok(result);
     }
 }
