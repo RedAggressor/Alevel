@@ -19,10 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="Properties\launchSettings.json" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Content Update="Views\Catalog\Index.cshtml">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>

@@ -1,9 +1,7 @@
 ﻿using MVC.Dtos;
 using MVC.Models.Enums;
-using MVC.Models.Responces;
 using MVC.Services.Interfaces;
 using MVC.ViewModels;
-using MVC.Models.Requests;
 
 namespace MVC.Services;
 
@@ -71,5 +69,15 @@ public class CatalogService : ICatalogService
         });
 
         return list;
+    }
+
+    public async Task<Catalog> GetByBrand(int id)
+    {
+        var dto = await _httpClient.SendAsync<List<CatalogItem>, int>($"{_settings.Value.CatalogUrl}/GetByBrand", HttpMethod.Post, id);
+
+        return new Catalog() 
+        { 
+            
+        };
     }
 }

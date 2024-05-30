@@ -13,7 +13,7 @@
         <form asp-action="Index" asp-controller="Catalog" method="post">
             <label class="esh-catalog-label" data-title="brand">
                 <select asp-for="@Model.BrandFilterApplied" asp-items="@Model.Brands" class="esh-catalog-filter"></select>
-            </label>
+            </label>            
             <label class="esh-catalog-label" data-title="type">
                 <select asp-for="@Model.TypesFilterApplied" asp-items="@Model.Types" class="esh-catalog-filter"></select>
             </label>
