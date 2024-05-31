@@ -1,4 +1,7 @@
+using Infrastructure.Enums;
+using Infrastructure.Models;
 using Infrastructure.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Services;
 public abstract class BaseDataService<T>
@@ -15,11 +18,24 @@ public abstract class BaseDataService<T>
         _logger = logger;
     }
 
-    protected Task ExecuteSafeAsync(Func<Task> action, CancellationToken cancellationToken = default) => ExecuteSafeAsync(token => action(), cancellationToken);
+    protected Task ExecuteSafeAsync(
+        Func<Task> action,
+        CancellationToken cancellationToken = default) =>
 
-    protected Task<TResult> ExecuteSafeAsync<TResult>(Func<Task<TResult>> action, CancellationToken cancellationToken = default) => ExecuteSafeAsync(token => action(), cancellationToken);
+        ExecuteSafeAsync(token => action(), cancellationToken);
 
-    private async Task ExecuteSafeAsync(Func<CancellationToken, Task> action, CancellationToken cancellationToken = default)
+    protected Task<TResult> ExecuteSafeAsync<TResult>(
+        Func<Task<TResult>> action,
+        CancellationToken cancellationToken = default)
+        //where TResult : ResponceError, new()
+        => 
+
+        ExecuteSafeAsync(token => action(), cancellationToken);
+
+    private async Task ExecuteSafeAsync(
+        Func<CancellationToken,
+        Task> action,
+        CancellationToken cancellationToken = default)
     {
         await using var transaction = await _dbContextWrapper.BeginTransactionAsync(cancellationToken);
 
@@ -36,7 +52,11 @@ public abstract class BaseDataService<T>
         }
     }
 
-    private async Task<TResult> ExecuteSafeAsync<TResult>(Func<CancellationToken, Task<TResult>> action, CancellationToken cancellationToken = default)
+    private async Task<TResult> ExecuteSafeAsync<TResult>(
+        Func<CancellationToken,
+        Task<TResult>> action,
+        CancellationToken cancellationToken = default)
+        //where TResult : ResponceError, new()
     {
         await using var transaction = await _dbContextWrapper.BeginTransactionAsync(cancellationToken);
 
@@ -52,8 +72,12 @@ public abstract class BaseDataService<T>
         {
             await transaction.RollbackAsync(cancellationToken);
             _logger.LogError(ex, $"transaction is rollbacked");
-        }
 
+            //return new TResult() 
+           // { 
+             //   ErrorMessage = ex.Message,
+           // };
+        }
         return default(TResult) !;
     }
 }
