@@ -1,12 +1,13 @@
 ﻿using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 
 namespace Catalog.Host.Services.Interfaces
 {
     public interface ICatalogBrandService
     {
-        Task<int?> AddAsync(string? type);
-        Task<string?> DeleteAsync(int? id);
-        Task<CatalogBrandDto?> UpdateAsync(CatalogBrandDto? typeDto);
-        Task<IEnumerable<CatalogBrandDto>> GetList();
+        Task<IdResponse> AddAsync(string? type);
+        Task<DeleteResponse> DeleteAsync(int? id);
+        Task<UpdataResponse<CatalogBrandDto>> UpdateAsync(CatalogBrandDto? typeDto);
+        Task<ListResponse<CatalogBrandDto>> GetList();
     }
 }

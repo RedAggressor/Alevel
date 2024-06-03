@@ -23,7 +23,7 @@ public class CatalogService : BaseDataService<ApplicationDbContext>, ICatalogSer
         _mapper = mapper;
     }
 
-    public async Task<PaginatedItemsResponse<CatalogItemDto>?> GetByPageAsync(int pageSize, int pageIndex, Dictionary<CatalogTypeFilter, int>? filters)
+    public async Task<PaginatedItemsResponse<CatalogItemDto>> GetByPageAsync(int pageSize, int pageIndex, Dictionary<CatalogTypeFilter, int>? filters)
     {
         return await ExecuteSafeAsync(async () =>
         {
@@ -44,17 +44,14 @@ public class CatalogService : BaseDataService<ApplicationDbContext>, ICatalogSer
             }
 
             var result = await _catalogItemRepository.GetByPageAsync(pageIndex, pageSize, brandFilter, typeFilter);
-            if (result == null)
-            {
-                return null;
-            }
-
+            
             return new PaginatedItemsResponse<CatalogItemDto>()
             {
                 Count = result.TotalCount,
                 Data = result.Data.Select(s => _mapper.Map<CatalogItemDto>(s)).ToList(),
                 PageIndex = pageIndex,
                 PageSize = pageSize
+                 
             };
         });
     }    

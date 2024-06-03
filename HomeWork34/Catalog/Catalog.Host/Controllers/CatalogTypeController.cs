@@ -1,8 +1,6 @@
-using Catalog.Host.Data.Entities;
 using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 using Catalog.Host.Services.Interfaces;
-using Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Host.Controllers;
 
@@ -22,33 +20,45 @@ public class CatalogTypeController : ControllerBase
     }    
 
     [HttpPost]
-    public async Task<int?> AddType(string? type)
+    public async Task<IdResponse> AddType(string? type)
     {
         if(type is null)
         {
-            return null;
+            return new IdResponse() 
+            {
+                ErrorMessage = "Null data",
+                RespCode = ResponceCode.Failed
+            };
         }
 
         return await _serivice.AddType(type);
     }
 
     [HttpPut]
-    public async Task<CatalogTypeDto?> UpdateType(CatalogTypeDto? catalogType)
+    public async Task<UpdataResponse<CatalogTypeDto>> UpdateType(CatalogTypeDto? catalogType)
     {
         if (catalogType is null)
         {
-            return null;
+            return new UpdataResponse<CatalogTypeDto>() 
+            {
+                ErrorMessage = "Null data",
+                RespCode = ResponceCode.Error
+            };
         }
 
         return await _serivice.UpdateType(catalogType);
     }
 
     [HttpDelete]
-    public async Task<string?> DeleteType(int? id)
+    public async Task<DeleteResponse> DeleteType(int? id)
     {
         if (id is null)
         {
-            return "id can`t be null";
+            return new DeleteResponse() 
+            { 
+                RespCode = ResponceCode.Failed,
+                ErrorMessage = "id is null"
+            };
         }
 
         return await _serivice.DeleteType(id);

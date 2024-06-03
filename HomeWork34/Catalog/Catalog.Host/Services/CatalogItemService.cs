@@ -1,6 +1,7 @@
 using Catalog.Host.Data;
 using Catalog.Host.Data.Entities;
 using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 using Catalog.Host.Repositories.Interfaces;
 using Catalog.Host.Services.Interfaces;
 
@@ -22,7 +23,7 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
         _mapper = mapper;
     }
 
-    public Task<int?> Add(
+    public Task<IdResponse> Add(
         string name,
         string description,
         decimal price,
@@ -31,24 +32,20 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
         int catalogTypeId,
         string pictureFileName)
     {
-        return ExecuteSafeAsync(() => _catalogItemRepository.Add(
+        return ExecuteSafeAsync(async () => new IdResponse() { Id = await _catalogItemRepository.Add(
             name,
             description,
             price,
             availableStock,
             catalogBrandId,
             catalogTypeId,
-            pictureFileName));
+            pictureFileName)});
     }
 
     public async Task<CatalogItemDto> GetCatalogItemsByIdAsync(int? id)
     {
         return await ExecuteSafeAsync(async () =>
-        {
-            if (id is null)
-            {
-                return null!;
-            }
+        {            
 
             var item = await _catalogItemRepository.GetCatalogItemsByIdAsync(id);
 
@@ -59,14 +56,10 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
         
     }
 
-    public async Task<ICollection<CatalogItemDto>> GetCatalogItemByBrandAsync(int? idBrand)
+    public async Task<ListResponse<CatalogItemDto>> GetCatalogItemByBrandAsync(int? idBrand)
     {
         return await ExecuteSafeAsync(async () =>
-        {
-            if (idBrand is null)
-            {
-                return null!;
-            }
+        {            
 
             var itemColections = new List<CatalogItemDto>();
 
@@ -74,39 +67,39 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
 
             itemColections.AddRange( items.Select(i => _mapper.Map<CatalogItemDto>(i)));
 
-            return itemColections;
+            return new ListResponse<CatalogItemDto>() 
+            { 
+                List = itemColections 
+            };
         });
     }
 
-    public async Task<ICollection<CatalogItemDto>> GetCatalogItemByTypeAsync(int? idType)
+    public async Task<ListResponse<CatalogItemDto>> GetCatalogItemByTypeAsync(int? idType)
     {
         return await ExecuteSafeAsync(async () =>
         {
-            if (idType is null)
-            {
-                return null!;
-            }
-
             var itemColections = new List<CatalogItemDto>();
 
             var items = await _catalogItemRepository.GetCatalogItemsByTypeAsync(idType);
 
             itemColections.AddRange(items.Select(i => _mapper.Map<CatalogItemDto>(i)));
 
-            return itemColections;
+            return new ListResponse<CatalogItemDto>()
+            {
+                List = itemColections
+            };
         });
     }
 
-    public async Task<string> DeleteAsync(int? id)
+    public async Task<DeleteResponse> DeleteAsync(int? id)
     {
         return await ExecuteSafeAsync(async () =>
         {
-            if (id is null)
-            {
-                return "Id can`t be null";
-            }
-
-            return await _catalogItemRepository.DeleteAsync(id);
+            var message = await _catalogItemRepository.DeleteAsync(id);
+            return new DeleteResponse() 
+            { 
+                Status = message
+            };
         });
     }
 
@@ -114,11 +107,6 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
     {
         return await ExecuteSafeAsync(async () =>
         {
-            if(catalogItemDto is null)
-            {
-                return null!;
-            }
-
             var item = _mapper.Map<CatalogItem>(catalogItemDto);
             item = await _catalogItemRepository.Update(item);
             var dto = _mapper.Map<CatalogItemDto>(item);

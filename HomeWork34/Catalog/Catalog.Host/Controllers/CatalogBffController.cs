@@ -1,11 +1,8 @@
-using System.Net;
 using Catalog.Host.Models.Dtos;
 using Catalog.Host.Models.enums;
 using Catalog.Host.Models.Requests;
 using Catalog.Host.Models.Response;
 using Catalog.Host.Services.Interfaces;
-using Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Host.Controllers;
 
@@ -37,12 +34,24 @@ public class CatalogBffController : ControllerBase
     [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> Items(PaginatedItemsRequest<CatalogTypeFilter> request)
     {
+        if (request is null)
+        {
+            _logger.LogWarning("request null!");
+            var responce = new BaseResponce()
+            {                
+                ErrorMessage = "request null!",
+                RespCode = ResponceCode.Error
+            };
+            responce.GetResponce();
+
+            return Ok(responce);
+        }
         var result = await _catalogService.GetByPageAsync(request.PageSize, request.PageIndex, request.Filters);
         return Ok(result);
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(CatalogItemDto), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetById(int id)
     {
         var result = await _catalogItemService.GetCatalogItemsByIdAsync(id);
@@ -58,7 +67,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ListResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetByType(int idType)
     {
         var result = await _catalogItemService.GetCatalogItemByTypeAsync(idType);
@@ -66,7 +75,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(IEnumerable<CatalogBrandDto>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ListResponse<CatalogBrandDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetListBrand()
     {
         var result = await _catalogBrandService.GetList();
@@ -74,7 +83,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(IEnumerable<CatalogTypeDto>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ListResponse<CatalogTypeDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetListType()
     {
         var result = await _catalogTypeService.GetList();

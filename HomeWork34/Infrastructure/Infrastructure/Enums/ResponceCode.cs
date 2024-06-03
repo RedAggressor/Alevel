@@ -3,6 +3,8 @@
     public enum ResponceCode
     {
         Seccusfull = 200,
-        Error = 400,
+        Failed = 400,
+        Null = 500,
+        Error = 404
     }
 }

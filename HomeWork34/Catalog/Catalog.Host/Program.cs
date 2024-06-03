@@ -24,11 +24,23 @@ builder.Services.AddTransient<ICatalogBrandService, CatalogBrandService>();
 builder.Services.AddDbContextFactory<ApplicationDbContext>(opts => opts.UseNpgsql(configuration["ConnectionString"]!));
 builder.Services.AddScoped<IDbContextWrapper<ApplicationDbContext>, DbContextWrapper<ApplicationDbContext>>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "CorsPolicy",
+        builder => builder
+            .SetIsOriginAllowed((host) => true)
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
+
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseRouting();
+app.UseCors("CorsPolicy");
 
 app.UseEndpoints(endpoints =>
 {

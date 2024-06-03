@@ -33,6 +33,8 @@ namespace Catalog.UnitTest.Services
             int pageSizeTest = 1;
             int pageIndexTest = 5;
             int totalCountTest = 12;
+            int brandFilter = 1;
+            int typeFilter = 1;
 
             var paginationItemReponceSeccusfull = new PaginatedItems<CatalogItem>()
             {
@@ -79,7 +81,10 @@ namespace Catalog.UnitTest.Services
 
             _catalogRepository.Setup(s => s.GetByPageAsync(
                 It.Is<int>(i => i == pageIndexTest),
-                It.Is<int>(i => i == pageSizeTest)))
+                It.Is<int>(i => i == pageSizeTest),
+                It.Is<int>(i=> i == brandFilter),
+                It.Is<int>(i=>i == typeFilter)
+                ))
             .ReturnsAsync(paginationItemReponceSeccusfull);
 
             _mapper.Setup(s => s.Map<CatalogItemDto>(
@@ -87,13 +92,13 @@ namespace Catalog.UnitTest.Services
                 .Returns(catalogItemDtoSuccesfull); // check mapper failed
 
             //act
-            var reesponce = await _serviceCatalog.GetByPageAsync(pageSizeTest, pageIndexTest);
+            var reesponce = await _serviceCatalog.GetByPageAsync(pageSizeTest, pageIndexTest, null);
 
             //assert
             reesponce.Should().NotBeNull();
             reesponce.Count.Should().Be(totalCountTest);
             reesponce.Data.Should().NotBeNull();
-            //reesponce.Data.First().Should().NotBeNull();
+            reesponce.Data.First().Should().NotBeNull();
             reesponce.PageIndex.Should().Be(pageIndexTest);
             reesponce.PageSize.Should().Be(pageSizeTest);
         }
@@ -104,14 +109,18 @@ namespace Catalog.UnitTest.Services
             //arrage
             var pageIndexTest = 2000;
             var pageSizeTest = 1000;
+            int? typeFilter = null;
+            int? brandFilter = null;
 
             _catalogRepository.Setup(s => s.GetByPageAsync(
                 It.Is<int>(i => i == pageIndexTest),
-                It.Is<int>(i => i == pageSizeTest)))
+                It.Is<int>(i => i == pageSizeTest),
+                It.Is<int?>(i=>i == typeFilter),
+                It.Is<int>(i=>i== brandFilter)))
             .Returns((Func<PaginatedItemsResponse<CatalogItemDto>>)null!);
 
             //act
-            var responce = await _serviceCatalog.GetByPageAsync(pageSizeTest, pageIndexTest);
+            var responce = await _serviceCatalog.GetByPageAsync(pageSizeTest, pageIndexTest, null);
 
             //assert
             responce.Should().BeNull();

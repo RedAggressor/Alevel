@@ -1,12 +1,14 @@
-﻿using Catalog.Host.Models.Dtos;
+﻿using Catalog.Host.Data.Entities;
+using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 
 namespace Catalog.Host.Services.Interfaces
 {
     public interface ICatalogTypeService
     {
-        Task<CatalogTypeDto?> UpdateType(CatalogTypeDto typeDto);
-        Task<string?> DeleteType(int? id);
-        Task<int?> AddType(string? type);
-        Task<IEnumerable<CatalogTypeDto>> GetList();
+        Task<UpdataResponse<CatalogTypeDto>> UpdateType(CatalogTypeDto typeDto);
+        Task<DeleteResponse> DeleteType(int? id);
+        Task<IdResponse> AddType(string? type);
+        Task<ListResponse<CatalogTypeDto>> GetList();
     }
 }

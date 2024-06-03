@@ -1,8 +1,7 @@
 using Catalog.Host.Data.Entities;
 using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 using Catalog.Host.Services.Interfaces;
-using Infrastructure;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Host.Controllers;
 
@@ -20,32 +19,20 @@ public class CatalogBrandController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<int?> AddBrand(string? brand)
-    {
-        if (brand is null)
-        {
-            return null;
-        }
-        return await _service.AddAsync(brand);
+    public async Task<IdResponse> AddBrand(string? brand)
+    {        
+        return await _service.AddAsync(brand);               
     }
 
     [HttpPut]
-    public async Task<CatalogBrandDto?> UpdateBrand(CatalogBrandDto? catalogBrand)
+    public async Task<UpdataResponse<CatalogBrandDto>> UpdateBrand(CatalogBrandDto? catalogBrand)
     {
-        if(catalogBrand is null)
-        {
-            return null;
-        }
         return await _service.UpdateAsync(catalogBrand);
     }
 
     [HttpDelete]
-    public async Task<string?> DeleteBrand(int? id)
-    {
-        if (id is null)
-        {
-            return null;
-        }
+    public async Task<DeleteResponse> DeleteBrand(int? id)
+    {        
         return await _service.DeleteAsync(id);
     }
 }

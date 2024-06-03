@@ -1,6 +1,7 @@
 ﻿using Catalog.Host.Data;
 using Catalog.Host.Data.Entities;
 using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 using Catalog.Host.Repositories.Interfaces;
 using Catalog.Host.Services.Interfaces;
 
@@ -21,55 +22,57 @@ namespace Catalog.Host.Services
             _mapper = mapper;
         }
 
-        public async Task<int?> AddAsync(string? brand)
+        public async Task<IdResponse> AddAsync(string? brand)
         {
             return await ExecuteSafeAsync(async () =>
-            {
-                if(brand is null)
+            {                
+                var entity = await _repository.AddAsync(brand);
+                return new IdResponse()
                 {
-                    return null;
-                }
-                return await _repository.AddAsync(brand);
+                    Id = entity.Value
+                };
             });
         }
 
-        public async Task<IEnumerable<CatalogBrandDto>> GetList()
+        public async Task<ListResponse<CatalogBrandDto>> GetList()
         {
             return await ExecuteSafeAsync(async () =>
             {
                 var entity = await _repository.GetList();
                 var dto = entity.Select(s=>_mapper.Map<CatalogBrandDto>(s)).ToList();
 
-                return dto;
+                return new ListResponse<CatalogBrandDto>() 
+                { 
+                    List = dto
+                };
             });
         }
 
-        public async Task<string?> DeleteAsync(int? id)
+        public async Task<DeleteResponse> DeleteAsync(int? id)
         {
             return await ExecuteSafeAsync(async () =>
             {
-                if(id is null)
-                {
-                    return "Id can`t be null";
-                }
+                var responce = await _repository.DeleteAsync(id);
 
-                return await _repository.DeleteAsync(id);
+                return new DeleteResponse() 
+                { 
+                    Status = responce
+                };
             });
         }
 
-        public async Task<CatalogBrandDto?> UpdateAsync(CatalogBrandDto? brandDto)
+        public async Task<UpdataResponse<CatalogBrandDto>> UpdateAsync(CatalogBrandDto? brandDto)
         {
             return await ExecuteSafeAsync(async () =>
             {
-                if(brandDto is null)
-                {
-                    return null;
-                }
-
                 var entity = _mapper.Map<CatalogBrand>(brandDto);
                 var upentity = await _repository.UpdateAsync(entity);
                 var dto = _mapper.Map<CatalogBrandDto>(upentity);
-                return dto;
+
+                return new UpdataResponse<CatalogBrandDto>
+                {
+                    UpdataModel = dto    
+                };
             });
         }
     }

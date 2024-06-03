@@ -1,7 +1,7 @@
 using Infrastructure.Enums;
+using Infrastructure.Exeptions;
 using Infrastructure.Models;
 using Infrastructure.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Services;
 public abstract class BaseDataService<T>
@@ -27,9 +27,8 @@ public abstract class BaseDataService<T>
     protected Task<TResult> ExecuteSafeAsync<TResult>(
         Func<Task<TResult>> action,
         CancellationToken cancellationToken = default)
-        //where TResult : ResponceError, new()
-        => 
-
+        where TResult : BaseResponce, new()
+        =>
         ExecuteSafeAsync(token => action(), cancellationToken);
 
     private async Task ExecuteSafeAsync(
@@ -45,18 +44,24 @@ public abstract class BaseDataService<T>
 
             await transaction.CommitAsync(cancellationToken);
         }
+        catch (BusinessException bx)
+        {
+            await transaction.RollbackAsync(cancellationToken);
+            _logger.LogError(bx, $"transaction is rollbacked");             
+        }
         catch (Exception ex)
         {
             await transaction.RollbackAsync(cancellationToken);
             _logger.LogError(ex, $"transaction is rollbacked");
         }
+
     }
 
     private async Task<TResult> ExecuteSafeAsync<TResult>(
         Func<CancellationToken,
         Task<TResult>> action,
         CancellationToken cancellationToken = default)
-        //where TResult : ResponceError, new()
+        where TResult : BaseResponce, new()
     {
         await using var transaction = await _dbContextWrapper.BeginTransactionAsync(cancellationToken);
 
@@ -73,11 +78,11 @@ public abstract class BaseDataService<T>
             await transaction.RollbackAsync(cancellationToken);
             _logger.LogError(ex, $"transaction is rollbacked");
 
-            //return new TResult() 
-           // { 
-             //   ErrorMessage = ex.Message,
-           // };
-        }
-        return default(TResult) !;
+            return new TResult() 
+            { 
+                 ErrorMessage = ex.Message,
+                 RespCode = ResponceCode.Error
+            };
+        }        
     }
 }

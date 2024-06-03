@@ -19,10 +19,12 @@ public class CatalogController : Controller
         itemsPage ??= 6;
 
         var catalog = await _catalogService.GetCatalogItems(page.Value, itemsPage.Value, brandFilterApplied, typesFilterApplied);
+
         if (catalog == null)
         {
             return View("Error");
         }
+
         var info = new PaginationInfo()
         {
             ActualPage = page.Value,
@@ -30,6 +32,7 @@ public class CatalogController : Controller
             TotalItems = catalog.Count,
             TotalPages = (int)Math.Ceiling((decimal)catalog.Count / itemsPage.Value)
         };
+
         var vm = new IndexViewModel()
         {
             CatalogItems = catalog.Data,
@@ -37,7 +40,7 @@ public class CatalogController : Controller
             Types = await _catalogService.GetTypes(),
             PaginationInfo = info,          
         };
-
+        
         vm.PaginationInfo.Next = (vm.PaginationInfo.ActualPage == vm.PaginationInfo.TotalPages - 1) ? "is-disabled" : "";
         vm.PaginationInfo.Previous = (vm.PaginationInfo.ActualPage == 0) ? "is-disabled" : "";
 

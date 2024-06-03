@@ -23,8 +23,19 @@ namespace Catalog.Host.Repositories
                 return null;
             }
 
-            return await _dbContext.CatalogBrands
+            CatalogBrand? responce;
+
+            try 
+            {
+                responce = await _dbContext.CatalogBrands
                 .FirstOrDefaultAsync(f => f.Id == id);
+            }
+            catch (Exception ex) 
+            {
+                throw new BusinessException(ex.Message);
+            }
+
+            return responce!;
         }
 
         public async Task<ICollection<CatalogBrand>> GetList()
@@ -37,7 +48,7 @@ namespace Catalog.Host.Repositories
             if(brand is null)
             {
                 _logger.LogWarning("brand null!");
-                return null;
+                throw new Exception("brand null!");
             }
 
             var entity = await _dbContext.CatalogBrands

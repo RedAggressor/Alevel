@@ -1,3 +1,4 @@
+using Infrastructure.Exeptions;
 using MVC.Services.Interfaces;
 using Newtonsoft.Json;
 
@@ -14,8 +15,6 @@ public class HttpClientService : IHttpClientService
 
     public async Task<TResponse> SendAsync<TResponse, TRequest>(string url, HttpMethod method, TRequest? content)
     {
-        var client = _clientFactory.CreateClient();
-
         var httpMessage = new HttpRequestMessage();
         httpMessage.RequestUri = new Uri(url);
         httpMessage.Method = method;
@@ -26,15 +25,33 @@ public class HttpClientService : IHttpClientService
                 new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
         }
 
-        var result = await client.SendAsync(httpMessage);
+        HttpResponseMessage result;
+
+        try 
+        {
+            var client = _clientFactory.CreateClient();
+            result = await client.SendAsync(httpMessage);
+        }
+        catch (Exception ex) 
+        {
+            throw new BusinessException(ex.Message);
+        }
+
+        string resultContent = string.Empty;
 
         if (result.IsSuccessStatusCode)
         {
-            var resultContent = await result.Content.ReadAsStringAsync();
+            resultContent = await result.Content.ReadAsStringAsync();
             var response = JsonConvert.DeserializeObject<TResponse>(resultContent);
+
+            if (response is null) 
+            {
+                throw new BusinessException("Something is going wrong!");
+            }
+
             return response!;
         }
 
-        return default(TResponse) !;
+        throw new BusinessException(resultContent, result.StatusCode.ToString());
     }
 }

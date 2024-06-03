@@ -2,6 +2,7 @@
 using Catalog.Host.Data;
 using Catalog.Host.Data.Entities;
 using Catalog.Host.Models.Dtos;
+using Catalog.Host.Models.Response;
 using Catalog.Host.Repositories.Interfaces;
 using Catalog.Host.Services.Interfaces;
 
@@ -23,55 +24,58 @@ namespace Catalog.Host.Services
             _mapping = mapper;
         }
 
-        public async Task<int?> AddType(string? type)
+        public async Task<IdResponse> AddType(string? type)
         {
             return await ExecuteSafeAsync(async () =>
-            {
-                if (type is null)
-                {
-                    return null;
-                }
+            {        
+                var responce = await _repository.AddTypeAsync(type);
 
-                return await _repository.AddTypeAsync(type);
+                return new IdResponse() 
+                {
+                    Id = responce 
+                };
             });
         }
 
-        public async Task<IEnumerable<CatalogTypeDto>> GetList()
+        public async Task<ListResponse<CatalogTypeDto>> GetList()
         {
             return await ExecuteSafeAsync(async () => 
             {
                 var entity = await _repository.GetList();
 
-                return entity.Select(s=>_mapping.Map<CatalogTypeDto>(s));                 
+                var list = entity.Select(s=>_mapping.Map<CatalogTypeDto>(s));
+
+                return new ListResponse<CatalogTypeDto>()
+                { 
+                    List = list
+                };
             });
         }
 
-        public async Task<string?> DeleteType(int? id)
+        public async Task<DeleteResponse> DeleteType(int? id)
         {
             return await ExecuteSafeAsync(async() =>
             {
-                if (id is null)
-                {
-                    return "Id can`t be null";
-                }
+                var message = await _repository.DeleteType(id);
 
-                return await _repository.DeleteType(id);
+                return new DeleteResponse()
+                {
+                    Status = message
+                };
             });
         }
 
-        public async Task<CatalogTypeDto?> UpdateType(CatalogTypeDto typeDto)
+        public async Task<UpdataResponse<CatalogTypeDto>> UpdateType(CatalogTypeDto typeDto)
         {
             return await ExecuteSafeAsync(async () => 
             {
-                if (typeDto is null)
-                {
-                    return null;
-                }
-
                 var entity = _mapping.Map<CatalogType>(typeDto);
                 var upentity = await _repository.Update(entity);
                 var dto = _mapping.Map<CatalogTypeDto>(upentity);
-                return dto;
+                return new UpdataResponse<CatalogTypeDto>() 
+                { 
+                    UpdataModel = dto
+                };
             });
         }
     }

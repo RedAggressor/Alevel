@@ -6,5 +6,5 @@ namespace Catalog.Host.Services.Interfaces;
 
 public interface ICatalogService
 {
-    Task<PaginatedItemsResponse<CatalogItemDto>?> GetByPageAsync(int pageSize, int pageIndex, Dictionary<CatalogTypeFilter, int>? filters);    
+    Task<PaginatedItemsResponse<CatalogItemDto>> GetByPageAsync(int pageSize, int pageIndex, Dictionary<CatalogTypeFilter, int>? filters);    
 }

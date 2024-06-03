@@ -1,6 +1,6 @@
 namespace MVC.ViewModels;
 
-public class CatalogBrand
+public class CatalogBrand : ErrorViewModel
 {
     public int Id { get; set; }
 

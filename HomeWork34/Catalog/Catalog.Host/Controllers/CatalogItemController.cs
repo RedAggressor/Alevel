@@ -36,7 +36,7 @@ public class CatalogItemController : ControllerBase
             request.CatalogTypeId,
             request.PictureFileName);
 
-        return Ok(new AddItemResponse<int?>() { Id = result });
+        return Ok(result);
     }
 
     [HttpGet]
@@ -46,7 +46,7 @@ public class CatalogItemController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<string> Delete(int id)
+    public async Task<DeleteResponse> Delete(int id)
     {
         return await _catalogItemService.DeleteAsync(id);
     }

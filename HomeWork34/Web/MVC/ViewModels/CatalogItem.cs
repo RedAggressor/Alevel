@@ -1,6 +1,6 @@
 ﻿namespace MVC.ViewModels;
 
-public record CatalogItem
+public class CatalogItem : BaseResponce
 {
     public int Id { get; set; }
 

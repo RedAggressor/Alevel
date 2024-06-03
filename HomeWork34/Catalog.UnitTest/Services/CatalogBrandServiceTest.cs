@@ -125,24 +125,23 @@ namespace Catalog.UnitTest.Services
             //assert
             responce.Should().NotBeNull();
             responce.Should().Be(dto);
-            responce.Brand.Should().Be(input);
         }
                 
         [Fact]
         public async Task Update_Failed()
         {
             //arrage
-            CatalogBrandDto dto = null;
+            CatalogBrandDto? dto = null;
 
-            CatalogBrand entity = null;
+            CatalogBrand? entity = null;
 
-            _mapper.Setup(s => s.Map<CatalogBrand>(It.Is<CatalogBrandDto>(i => i.Equals(dto)))).Returns(entity);
+            _mapper.Setup(s => s.Map<CatalogBrand>(It.Is<CatalogBrandDto>(i => i.Equals(dto)))).Returns(entity!);
 
             _brandRepository
                 .Setup(s => s.UpdateAsync(It.IsAny<CatalogBrand>()))
                 .ReturnsAsync(entity);
 
-            _mapper.Setup(s => s.Map<CatalogBrandDto>(It.Is<CatalogBrand>(i => i.Equals(entity)))).Returns(dto);
+            _mapper.Setup(s => s.Map<CatalogBrandDto>(It.Is<CatalogBrand>(i => i.Equals(entity)))).Returns(dto!);
 
             //act
             var responce = await _catalogBrandService.UpdateAsync(dto);
