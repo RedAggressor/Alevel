@@ -11,6 +11,7 @@ namespace Catalog.Host.Services
     {
         private readonly ICatalogBrandRepository _repository;
         private readonly IMapper _mapper;
+        private readonly ILogger<CatalogBrandService> _logger;
         public CatalogBrandService(
             IDbContextWrapper<ApplicationDbContext> dbContextWrapper,
             ILogger<CatalogBrandService> logger,
@@ -20,6 +21,7 @@ namespace Catalog.Host.Services
         { 
             _repository = catalogBrandRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<IdResponse> AddAsync(string? brand)
@@ -52,6 +54,12 @@ namespace Catalog.Host.Services
         {
             return await ExecuteSafeAsync(async () =>
             {
+                if(id is null)
+                {
+                    _logger.LogWarning("Id Null");
+                    throw new BusinessException("Id Null");
+                }
+
                 var responce = await _repository.DeleteAsync(id);
 
                 return new DeleteResponse() 
@@ -64,7 +72,7 @@ namespace Catalog.Host.Services
         public async Task<UpdataResponse<CatalogBrandDto>> UpdateAsync(CatalogBrandDto? brandDto)
         {
             return await ExecuteSafeAsync(async () =>
-            {
+            {                
                 var entity = _mapper.Map<CatalogBrand>(brandDto);
                 var upentity = await _repository.UpdateAsync(entity);
                 var dto = _mapper.Map<CatalogBrandDto>(upentity);

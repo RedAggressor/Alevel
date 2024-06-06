@@ -6,7 +6,7 @@ namespace Catalog.Host.Repositories.Interfaces
     {
         Task<CatalogBrand?> GetById(int? id);
         Task<int?> AddAsync(string? brand);
-        Task<string?> DeleteAsync(int? id);
+        Task<string> DeleteAsync(int? id);
         Task<CatalogBrand?> UpdateAsync(CatalogBrand? catalogBrand);
         Task<ICollection<CatalogBrand>> GetList();
     }

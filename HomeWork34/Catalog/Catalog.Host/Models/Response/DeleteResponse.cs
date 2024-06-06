@@ -3,5 +3,11 @@
     public class DeleteResponse : BaseResponce
     {
         public string? Status { get; set; }
+
+        public override ResponceCode GetResponce() =>
+            Status is null ?
+            ResponceCode.Null :
+            ResponceCode.Seccusfull;
+
     }
 }

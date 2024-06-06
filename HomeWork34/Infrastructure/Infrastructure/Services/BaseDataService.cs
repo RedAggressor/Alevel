@@ -73,6 +73,17 @@ public abstract class BaseDataService<T>
 
             return result;
         }
+        catch (BusinessException bx)
+        {
+            await transaction.RollbackAsync(cancellationToken);
+            _logger.LogError(bx, $"transaction is rollbacked");
+
+            return new TResult()
+            {
+                ErrorMessage = bx.Message,
+                RespCode = ResponceCode.Error
+            };
+        }
         catch (Exception ex)
         {
             await transaction.RollbackAsync(cancellationToken);

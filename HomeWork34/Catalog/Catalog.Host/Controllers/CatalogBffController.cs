@@ -39,8 +39,7 @@ public class CatalogBffController : ControllerBase
             _logger.LogWarning("request null!");
             var responce = new BaseResponce()
             {                
-                ErrorMessage = "request null!",
-                RespCode = ResponceCode.Error
+                ErrorMessage = "request null!"                
             };
             responce.GetResponce();
 
@@ -52,24 +51,51 @@ public class CatalogBffController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(CatalogItemDto), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(int? id)
     {
+        if(id is null)
+        {
+            var responce = new BaseResponce()
+            {
+                ErrorMessage = "id is null"
+            };
+            responce.GetResponce();
+            return Ok(responce);
+        }
         var result = await _catalogItemService.GetCatalogItemsByIdAsync(id);
         return Ok(result);
     }
 
     [HttpPost]
     [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetByBrand(int idBrand)
+    public async Task<IActionResult> GetByBrand(int? idBrand)
     {
+        if (idBrand is null)
+        {
+            var responce = new BaseResponce()
+            {
+                ErrorMessage = "id is null"
+            };
+            responce.GetResponce();
+            return Ok(responce);
+        }
         var result = await _catalogItemService.GetCatalogItemByBrandAsync(idBrand);
         return Ok(result);
     }
 
     [HttpPost]
     [ProducesResponseType(typeof(ListResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetByType(int idType)
+    public async Task<IActionResult> GetByType(int? idType)
     {
+        if (idType is null)
+        {
+            var responce = new BaseResponce()
+            {
+                ErrorMessage = "id is null"
+            };
+            responce.GetResponce();
+            return Ok(responce);
+        }
         var result = await _catalogItemService.GetCatalogItemByTypeAsync(idType);
         return Ok(result);
     }

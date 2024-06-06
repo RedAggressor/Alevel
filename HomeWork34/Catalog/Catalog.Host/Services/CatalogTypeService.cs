@@ -12,6 +12,7 @@ namespace Catalog.Host.Services
     {
         private readonly ICatalogTypeRepository _repository;
         private readonly IMapper _mapping;
+        private readonly ILogger<CatalogTypeService> _logger;
 
         public CatalogTypeService(
             ICatalogTypeRepository repository,
@@ -22,6 +23,7 @@ namespace Catalog.Host.Services
         {
             _repository = repository;
             _mapping = mapper;
+            _logger = logger;
         }
 
         public async Task<IdResponse> AddType(string? type)
@@ -32,7 +34,7 @@ namespace Catalog.Host.Services
 
                 return new IdResponse() 
                 {
-                    Id = responce 
+                    Id = responce.Value
                 };
             });
         }
@@ -56,6 +58,12 @@ namespace Catalog.Host.Services
         {
             return await ExecuteSafeAsync(async() =>
             {
+                if(id is null)
+                {
+                    _logger.LogWarning("id null");
+                    throw new BusinessException("id null");
+                }
+
                 var message = await _repository.DeleteType(id);
 
                 return new DeleteResponse()

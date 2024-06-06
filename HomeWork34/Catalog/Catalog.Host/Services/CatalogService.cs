@@ -45,7 +45,7 @@ public class CatalogService : BaseDataService<ApplicationDbContext>, ICatalogSer
 
             var result = await _catalogItemRepository.GetByPageAsync(pageIndex, pageSize, brandFilter, typeFilter);
             
-            return new PaginatedItemsResponse<CatalogItemDto>()
+            var responce = new PaginatedItemsResponse<CatalogItemDto>()
             {
                 Count = result.TotalCount,
                 Data = result.Data.Select(s => _mapper.Map<CatalogItemDto>(s)).ToList(),
@@ -53,6 +53,8 @@ public class CatalogService : BaseDataService<ApplicationDbContext>, ICatalogSer
                 PageSize = pageSize
                  
             };
+
+            return responce;
         });
     }    
 }

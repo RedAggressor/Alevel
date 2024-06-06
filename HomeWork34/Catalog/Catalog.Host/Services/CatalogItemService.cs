@@ -32,6 +32,8 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
         int catalogTypeId,
         string pictureFileName)
     {
+
+
         return ExecuteSafeAsync(async () => new IdResponse() { Id = await _catalogItemRepository.Add(
             name,
             description,
@@ -45,8 +47,7 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
     public async Task<CatalogItemDto> GetCatalogItemsByIdAsync(int? id)
     {
         return await ExecuteSafeAsync(async () =>
-        {            
-
+        {
             var item = await _catalogItemRepository.GetCatalogItemsByIdAsync(id);
 
             var dto = _mapper.Map<CatalogItemDto>(item);

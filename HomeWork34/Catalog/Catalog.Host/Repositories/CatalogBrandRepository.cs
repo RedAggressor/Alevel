@@ -17,21 +17,16 @@ namespace Catalog.Host.Repositories
 
         public async Task<CatalogBrand?> GetById(int? id)
         {
-            if (id is null)
-            {
-                _logger.LogWarning("id null!");
-                return null;
-            }
-
             CatalogBrand? responce;
 
-            try 
+            try
             {
                 responce = await _dbContext.CatalogBrands
                 .FirstOrDefaultAsync(f => f.Id == id);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
+                _logger.LogWarning(ex.Message);
                 throw new BusinessException(ex.Message);
             }
 
@@ -40,21 +35,20 @@ namespace Catalog.Host.Repositories
 
         public async Task<ICollection<CatalogBrand>> GetList()
         {
-            return await _dbContext.CatalogBrands.ToListAsync();             
+            return await _dbContext.CatalogBrands.ToListAsync();
         }
 
         public async Task<int?> AddAsync(string? brand)
         {
-            if(brand is null)
+            if (brand is null)
             {
                 _logger.LogWarning("brand null!");
-                throw new Exception("brand null!");
+                throw new BusinessException("brand null!");
             }
 
             var entity = await _dbContext.CatalogBrands
-
                 .AddAsync(new CatalogBrand()
-                { 
+                {
                     Brand = brand
                 });
 
@@ -63,17 +57,11 @@ namespace Catalog.Host.Repositories
             return entity.Entity.Id;
         }
 
-        public async Task<string?> DeleteAsync(int? id)
+        public async Task<string> DeleteAsync(int? id)
         {
-            if (id is null)
-            {
-                _logger.LogWarning("Id can`t be null");
-                return "Id can`t be null";
-            }
-
             var entity = await GetById(id);
-            var message = _dbContext.CatalogBrands.Remove(entity!);
 
+            var message = _dbContext.CatalogBrands.Remove(entity!);
             await _dbContext.SaveChangesAsync();
 
             return message.State.ToString();
@@ -81,10 +69,10 @@ namespace Catalog.Host.Repositories
 
         public async Task<CatalogBrand?> UpdateAsync(CatalogBrand? catalogBrand)
         {
-            if(catalogBrand is null)
+            if (catalogBrand is null)
             {
                 _logger.LogWarning("entity is null");
-                return null;
+                throw new BusinessException("brand null!");
             }
 
             var entity = await GetById(catalogBrand.Id);

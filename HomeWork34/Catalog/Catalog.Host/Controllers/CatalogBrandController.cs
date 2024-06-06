@@ -1,4 +1,3 @@
-using Catalog.Host.Data.Entities;
 using Catalog.Host.Models.Dtos;
 using Catalog.Host.Models.Response;
 using Catalog.Host.Services.Interfaces;
@@ -20,18 +19,18 @@ public class CatalogBrandController : ControllerBase
 
     [HttpPost]
     public async Task<IdResponse> AddBrand(string? brand)
-    {        
+    {
         return await _service.AddAsync(brand);               
     }
 
     [HttpPut]
     public async Task<UpdataResponse<CatalogBrandDto>> UpdateBrand(CatalogBrandDto? catalogBrand)
-    {
+    {        
         return await _service.UpdateAsync(catalogBrand);
     }
 
     [HttpDelete]
-    public async Task<DeleteResponse> DeleteBrand(int? id)
+    public async Task<DeleteResponse> DeleteBrand(int id)
     {        
         return await _service.DeleteAsync(id);
     }

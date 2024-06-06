@@ -72,6 +72,11 @@ void CreateDbIfNotExists(IHost host)
 
             DbInitializer.Initialize(context).Wait();
         }
+        catch (BusinessException ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred creating the DB.");
+        }
         catch (Exception ex)
         {
             var logger = services.GetRequiredService<ILogger<Program>>();

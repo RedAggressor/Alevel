@@ -1,5 +1,4 @@
-﻿
-namespace Catalog.Host.Models.Response
+﻿namespace Catalog.Host.Models.Response
 {
     public class ListResponse<T> : BaseResponce
     {

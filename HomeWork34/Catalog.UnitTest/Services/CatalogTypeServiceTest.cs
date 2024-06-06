@@ -38,13 +38,20 @@ namespace Catalog.UnitTest.Services
             var inTest = "test";
             var outTest = 1;
 
-            _catalogTypeRepository.Setup(s => s.AddTypeAsync(It.IsAny<string>())).ReturnsAsync(outTest);
+            _catalogTypeRepository
+                .Setup(s => 
+                    s.AddTypeAsync(It.IsAny<string>()))
+                .ReturnsAsync(outTest);
 
             //act
             var responce = await _catalogTypeService.AddType(inTest);
 
             //assert
-            responce.Should().Be(outTest);
+            responce.Should().NotBeNull();
+            responce.Id.Should().Be(outTest);
+            responce.Id.Should().NotBeNull();
+            responce.ErrorMessage.Should().BeNull();
+            responce.RespCode.Should().BeNull();
         }
 
         [Fact]
@@ -54,13 +61,19 @@ namespace Catalog.UnitTest.Services
             string? inTest = null;
             int? outTest = null;
 
-            _catalogTypeRepository.Setup(s => s.AddTypeAsync(It.IsAny<string>())).ReturnsAsync(outTest);
+            _catalogTypeRepository
+                .Setup(s => 
+                    s.AddTypeAsync(It.IsAny<string>()))
+                .ReturnsAsync(outTest);
 
             //act
             var responce = await _catalogTypeService.AddType(inTest);
 
             //assert
-            responce.Should().Be(outTest);
+            responce.Should().NotBeNull();
+            responce.Id.Should().BeNull();
+            responce.ErrorMessage.Should().NotBeNull();
+            responce.RespCode.Should().NotBeNull();
         }
 
         [Fact]
@@ -70,28 +83,42 @@ namespace Catalog.UnitTest.Services
             var inTest = 1;
             var outTest = "test";
 
-            _catalogTypeRepository.Setup(s=>s.DeleteType(It.IsAny<int>())).ReturnsAsync(outTest);
+            _catalogTypeRepository
+                .Setup(s=>
+                    s.DeleteType(It.IsAny<int>()))
+                .ReturnsAsync(outTest);
 
             //act
             var responce = await _catalogTypeService.DeleteType(inTest);
 
             //assert
-            responce.Should().Be(outTest);
+            responce.Should().NotBeNull();
+            responce.Status.Should().Be(outTest);
+            responce.Status.Should().NotBeNull();
+            responce.ErrorMessage.Should().BeNull();
+            responce.RespCode.Should().BeNull();
         }
 
+        [Fact]
         public async Task Delete_failed()
         {
             //arrage
             int? inTest = null;
-            string? outTest = null;
+            string? outTest = "test";
 
-            _catalogTypeRepository.Setup(s => s.DeleteType(It.IsAny<int>())).ReturnsAsync(outTest);
+            _catalogTypeRepository
+                .Setup(s => 
+                    s.DeleteType(It.IsAny<int>()))
+                .ReturnsAsync(outTest);
 
             //act
             var responce = await _catalogTypeService.DeleteType(inTest);
 
             //assert
-            responce.Should().Be(outTest);
+            responce.Should().NotBeNull();
+            responce.Status.Should().BeNull();
+            responce.ErrorMessage.Should().NotBeNull();
+            responce.RespCode.Should().NotBeNull();
         }
 
         [Fact]
@@ -110,17 +137,26 @@ namespace Catalog.UnitTest.Services
             _mapper.Setup(s => s.Map<CatalogType>(It.Is<CatalogTypeDto>(i => i.Equals(dto)))).Returns(entity);
 
             _catalogTypeRepository
-                .Setup(s => s.Update(It.Is<CatalogType>(i => i.Equals(entity))))
+                .Setup(s => 
+                    s.Update(It.Is<CatalogType>(i => 
+                        i.Equals(entity))))
                 .ReturnsAsync(entity);
                         
-            _mapper.Setup(s => s.Map<CatalogTypeDto>(It.Is<CatalogType>(i => i.Equals(entity)))).Returns(dto);
+            _mapper
+                .Setup(s => 
+                    s.Map<CatalogTypeDto>(It.Is<CatalogType>(i => 
+                        i.Equals(entity))))
+                .Returns(dto);
 
             //act
             var responce = await _catalogTypeService.UpdateType(dto);
 
             //assert
             responce.Should().NotBeNull();
-            //responce.Type.Should().Be("test");
+            responce.ErrorMessage.Should().BeNull();
+            responce.RespCode.Should().BeNull();
+            responce.UpdataModel.Should().NotBeNull();
+            responce.UpdataModel.Should().BeSameAs(dto);
         }
 
         [Fact]
@@ -130,19 +166,33 @@ namespace Catalog.UnitTest.Services
             CatalogTypeDto? dto = null;
             CatalogType? entity = null;
 
-            _mapper.Setup(s => s.Map<CatalogType>(It.Is<CatalogTypeDto>(i => i.Equals(dto)))).Returns(entity);
+            _mapper
+                .Setup(s => 
+                    s.Map<CatalogType>(It.Is<CatalogTypeDto>(i => 
+                        i.Equals(dto))))
+                .Returns(entity);
 
             _catalogTypeRepository
-                .Setup(s => s.Update(It.Is<CatalogType>(i => i.Equals(entity))))
+                .Setup(s => 
+                    s.Update(It.Is<CatalogType>(i => 
+                        i.Equals(entity))))
                 .ReturnsAsync(entity);
 
-            _mapper.Setup(s => s.Map<CatalogTypeDto>(It.Is<CatalogType>(i => i.Equals(entity)))).Returns(dto);
+            _mapper
+                .Setup(s => 
+                    s.Map<CatalogTypeDto>(It.Is<CatalogType>(i => 
+                        i.Equals(entity))))
+                .Returns(dto);
 
             //act
             var responce = await _catalogTypeService.UpdateType(dto);
 
             //assert
-            responce.Should().BeNull();            
+            responce.Should().NotBeNull();
+            responce.ErrorMessage.Should().NotBeNull();
+            responce.RespCode.Should().NotBeNull();
+            responce.UpdataModel.Should().BeNull();
+            responce.UpdataModel.Should().BeSameAs(dto);
         }
     }
 }

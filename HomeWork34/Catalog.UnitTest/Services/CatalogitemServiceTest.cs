@@ -67,7 +67,11 @@ namespace Catalog.UnitTest.Services
                 );
 
             //asert
-            result.Should().Be(testResult);
+            result.Should().NotBeNull();
+            result.Id.Should().Be(testResult);
+            result.RespCode.Should().BeNull();
+            result.ErrorMessage.Should().BeNull();
+            result.Id.Should().NotBeNull();
         }
 
         [Fact]
@@ -100,7 +104,10 @@ namespace Catalog.UnitTest.Services
                 );
 
             //asert
-            result.Should().Be(testResult);
+            result.Should().NotBeNull();            
+            result.RespCode.Should().NotBeNull();
+            result.ErrorMessage.Should().NotBeNull();
+            result.Id.Should().BeNull();
         }
 
         [Fact]
