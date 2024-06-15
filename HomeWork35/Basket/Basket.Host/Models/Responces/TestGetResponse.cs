@@ -1,4 +1,4 @@
-﻿namespace Basket.Host.Models
+﻿namespace Basket.Host.Models.Responces
 {
     public class TestGetResponse
     {

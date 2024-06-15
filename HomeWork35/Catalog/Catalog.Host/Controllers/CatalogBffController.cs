@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Catalog.Host.Controllers;
 
 [ApiController]
-//[Authorize(Policy = AuthPolicy.AllowEndUserPolicy)]
+[Authorize(Policy = AuthPolicy.AllowEndUserPolicy)]
 [Route(ComponentDefaults.DefaultRoute)]
 public class CatalogBffController : ControllerBase
 {
@@ -34,7 +34,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    //[AllowAnonymous]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> Items(PaginatedItemsRequest<CatalogTypeFilter> request)
     {
@@ -53,8 +53,7 @@ public class CatalogBffController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost]
-    //[AllowAnonymous]
+    [HttpPost]    
     [ProducesResponseType(typeof(CatalogItemDto), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetById(int? id)
     {
@@ -72,7 +71,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    //[AllowAnonymous]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(PaginatedItemsResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetByBrand(int? idBrand)
     {
@@ -90,7 +89,6 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    //[AllowAnonymous]
     [ProducesResponseType(typeof(ListResponse<CatalogItemDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetByType(int? idType)
     {
@@ -108,7 +106,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    //[AllowAnonymous]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(ListResponse<CatalogBrandDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetListBrand()
     {
@@ -117,7 +115,7 @@ public class CatalogBffController : ControllerBase
     }
 
     [HttpPost]
-    //[AllowAnonymous]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(ListResponse<CatalogTypeDto>), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetListType()
     {

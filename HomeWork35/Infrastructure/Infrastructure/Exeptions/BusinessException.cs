@@ -10,7 +10,8 @@
             ErrorCode = errorCode;
         }
 
-        public BusinessException(string message) { }
+        public BusinessException(string message) : base()
+        { }
 
         public BusinessException(
             string message,

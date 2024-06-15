@@ -1,4 +1,4 @@
-﻿using Basket.Host.Models;
+﻿using Basket.Host.Models.Responces;
 using Basket.Host.Services.Abstractions;
 
 namespace Basket.Host.Services;
